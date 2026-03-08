@@ -79,16 +79,18 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
                 </h1>
 
                 <div className="flex flex-col gap-3 mb-8">
-                    <div className="inline-flex items-center text-zinc-300 font-medium">
+                    <div className="inline-flex items-center text-zinc-300 font-medium group/venue">
                         <svg width="20" height="20" className="w-5 h-5 mr-3 text-rose-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                         </svg>
-                        <span className="text-lg">{show.venue}</span>
+                        <a href={`/theatres/${show.venue.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '')}`} className="text-lg hover:text-amber-400 transition-colors border-b border-transparent hover:border-amber-400/50">
+                            {show.venue}
+                        </a>
                     </div>
 
-                    <div className="inline-flex items-center text-zinc-300 font-medium pb-4 border-b border-zinc-800">
-                        <svg width="20" height="20" className="w-5 h-5 mr-3 text-rose-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <div className="inline-flex flex-wrap items-center text-zinc-300 font-medium pb-4 border-b border-zinc-800">
+                        <svg width="20" height="20" className="w-5 h-5 mr-3 text-rose-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z" />
                         </svg>
                         <span className="text-lg flex flex-col">
