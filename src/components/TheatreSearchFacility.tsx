@@ -20,7 +20,7 @@ export default function TheatreSearchFacility({ initialTheatres }: { initialThea
     return (
         <div className="space-y-8">
             {/* Search Header Config */}
-            <div className="bg-zinc-800/50 border border-zinc-700/50 p-4 rounded-xl flex items-center justify-center backdrop-blur-sm max-w-2xl mx-auto">
+            <div className="sticky top-4 bg-zinc-800/90 border border-zinc-700/50 p-4 rounded-xl flex items-center justify-center backdrop-blur-xl max-w-2xl mx-auto z-50 shadow-[0_8px_30px_rgb(0,0,0,0.5)] transition-all">
 
                 {/* Live Search */}
                 <div className="relative w-full flex-1">

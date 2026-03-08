@@ -84,7 +84,7 @@ export default function SearchFacility({ initialShows }: { initialShows: Show[] 
     return (
         <div className="space-y-8">
             {/* Search Header Config */}
-            <div className="bg-zinc-800/50 border border-zinc-700/50 p-4 rounded-xl flex flex-col md:flex-row gap-4 items-center justify-between backdrop-blur-sm relative z-50">
+            <div className="sticky top-4 bg-zinc-800/90 border border-zinc-700/50 p-4 rounded-xl flex flex-col md:flex-row gap-4 items-center justify-between backdrop-blur-xl z-50 shadow-[0_8px_30px_rgb(0,0,0,0.5)] transition-all">
 
                 {/* Live Search */}
                 <div className="relative w-full md:w-96 flex-1">
