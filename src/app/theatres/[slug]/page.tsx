@@ -46,6 +46,37 @@ export default async function TheatrePage({ params }: { params: Promise<{ slug: 
                     <p className="text-xl text-zinc-400 max-w-2xl font-light">
                         This historic venue is currently hosting {theatre.shows.length} incredible {theatre.shows.length === 1 ? 'production' : 'productions'}.
                     </p>
+
+                    <div className="mt-8 pt-8 border-t border-amber-500/20 max-w-2xl">
+                        <h3 className="text-lg font-bold text-amber-500 mb-4 flex items-center gap-2">
+                            <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                            </svg>
+                            View Seating Plan
+                        </h3>
+                        <a
+                            href="https://seatplan.com/london/dominion-theatre/seating-plan/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="block rounded-xl overflow-hidden border border-zinc-700/50 hover:border-amber-500/50 transition-colors group/seating"
+                        >
+                            <div className="relative aspect-[16/9] bg-zinc-900 flex items-center justify-center overflow-hidden">
+                                <img
+                                    src="https://seatplan.com/cdn/images/c/map_dominion-theatre-seating-plan-london.webp"
+                                    alt="Dominion Theatre Seating Plan"
+                                    className="object-contain w-full h-full opacity-80 group-hover/seating:opacity-100 group-hover/seating:scale-105 transition-all duration-500"
+                                />
+                                <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/80 via-transparent to-transparent"></div>
+                                <div className="absolute bottom-4 left-4 right-4 flex justify-between items-end">
+                                    <span className="text-sm font-medium text-white shadow-sm">Interactive Map</span>
+                                    <span className="bg-amber-500 text-zinc-950 text-xs font-bold px-3 py-1.5 rounded-full shadow-lg group-hover/seating:bg-amber-400 transition-colors">
+                                        Open SeatPlan
+                                    </span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
                 </div>
             </section>
 
