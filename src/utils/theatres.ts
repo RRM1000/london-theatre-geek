@@ -1,4 +1,4 @@
-import { Show } from '@/components/SearchFacility';
+import { Show } from '@/types';
 import { getCustomData } from './customData';
 
 const WEBFLOW_API_TOKEN = '2fa739d7456e30751df41d402e19f154ce6994ea1a32890e1a7aed5fc53f16e6';

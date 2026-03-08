@@ -2,18 +2,7 @@
 
 import { useState, useEffect, useMemo } from 'react';
 
-// Using the Next.js typed props for future proofing our data layer
-type Show = {
-    id: string;
-    name: string;
-    slug: string;
-    imageurl: string;
-    venue: string;
-    pricerange: string;
-    shortdescription: string;
-    category: string;
-    customData?: Record<string, any>;
-};
+import { Show } from '@/types';
 
 export default function SearchFacility({ initialShows }: { initialShows: Show[] }) {
     const [searchTerm, setSearchTerm] = useState('');
