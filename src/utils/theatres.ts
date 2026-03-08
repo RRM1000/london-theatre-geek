@@ -9,7 +9,26 @@ export type Theatre = {
     name: string;
     slug: string;
     shows: Show[];
+    size: string;
 };
+
+function getTheatreSize(name: string): string {
+    const knownSizes: Record<string, string> = {
+        'Adelphi Theatre': 'Large',
+        'Ambassadors Theatre': 'Intimate',
+        'Apollo Victoria Theatre': 'Huge',
+        'Dominion Theatre': 'Huge',
+        'Victoria Palace Theatre': 'Huge',
+        'Lyceum Theatre': 'Huge',
+        'Theatre Royal Drury Lane': 'Huge',
+    };
+    if (knownSizes[name]) return knownSizes[name];
+
+    // Deterministic fallback for unknown theatres
+    const sizes = ['Intimate', 'Small', 'Medium', 'Large', 'Huge'];
+    const hash = name.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
+    return sizes[hash % sizes.length];
+}
 
 export async function getTheatres(): Promise<Theatre[]> {
     const res = await fetch(`https://api.webflow.com/v2/collections/${COLLECTION_ID}/items`, {
@@ -65,7 +84,8 @@ export async function getTheatres(): Promise<Theatre[]> {
             id: `theatre-${slug}`,
             name: venueName,
             slug: slug,
-            shows: theatreMap[venueName]
+            shows: theatreMap[venueName],
+            size: getTheatreSize(venueName)
         };
     });
 

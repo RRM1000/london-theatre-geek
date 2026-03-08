@@ -5,25 +5,36 @@ import { Theatre } from '@/utils/theatres';
 
 export default function TheatreSearchFacility({ initialTheatres }: { initialTheatres: Theatre[] }) {
     const [searchTerm, setSearchTerm] = useState('');
+    const [selectedSize, setSelectedSize] = useState<string>('All Sizes');
+
+    const availableSizes = ['All Sizes', 'Intimate', 'Small', 'Medium', 'Large', 'Huge'];
 
     // Live filter
     const filteredTheatres = useMemo(() => {
-        if (!searchTerm) return initialTheatres;
+        let result = initialTheatres;
 
-        const lowerQuery = searchTerm.toLowerCase();
-        return initialTheatres.filter(theatre =>
-            theatre.name.toLowerCase().includes(lowerQuery) ||
-            theatre.shows.some(show => show.name.toLowerCase().includes(lowerQuery))
-        );
-    }, [initialTheatres, searchTerm]);
+        if (searchTerm) {
+            const lowerQuery = searchTerm.toLowerCase();
+            result = result.filter(theatre =>
+                theatre.name.toLowerCase().includes(lowerQuery) ||
+                theatre.shows.some(show => show.name.toLowerCase().includes(lowerQuery))
+            );
+        }
+
+        if (selectedSize !== 'All Sizes') {
+            result = result.filter(theatre => theatre.size === selectedSize);
+        }
+
+        return result;
+    }, [initialTheatres, searchTerm, selectedSize]);
 
     return (
         <div className="space-y-8">
             {/* Search Header Config */}
-            <div className="sticky top-4 bg-zinc-800/90 border border-zinc-700/50 p-4 rounded-xl flex items-center justify-center backdrop-blur-xl max-w-2xl mx-auto z-50 shadow-[0_8px_30px_rgb(0,0,0,0.5)] transition-all">
+            <div className="sticky top-4 bg-zinc-800/90 border border-zinc-700/50 p-4 rounded-xl flex flex-col md:flex-row gap-4 items-center justify-between backdrop-blur-xl z-50 shadow-[0_8px_30px_rgb(0,0,0,0.5)] transition-all">
 
                 {/* Live Search */}
-                <div className="relative w-full flex-1">
+                <div className="relative w-full md:w-96 flex-1">
                     <svg width="20" height="20" className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-zinc-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                     </svg>
@@ -34,6 +45,19 @@ export default function TheatreSearchFacility({ initialTheatres }: { initialThea
                         onChange={e => setSearchTerm(e.target.value)}
                         className="w-full bg-zinc-900 border border-zinc-700/80 rounded-lg py-3 pl-11 pr-4 text-base focus:outline-none focus:ring-2 focus:ring-amber-500/50 focus:border-amber-500 transition-all text-white placeholder-zinc-400 shadow-inner"
                     />
+                </div>
+
+                {/* Size Filter */}
+                <div className="flex w-full md:w-auto">
+                    <select
+                        value={selectedSize}
+                        onChange={e => setSelectedSize(e.target.value)}
+                        className="w-full md:w-48 bg-zinc-900 border border-zinc-700/80 rounded-lg py-3 px-3 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500/50 appearance-none text-zinc-200 cursor-pointer"
+                    >
+                        {availableSizes.map(size => (
+                            <option key={size} value={size}>{size === 'All Sizes' ? 'Filter by Size' : `${size} Venues`}</option>
+                        ))}
+                    </select>
                 </div>
             </div>
 
@@ -51,14 +75,19 @@ export default function TheatreSearchFacility({ initialTheatres }: { initialThea
                             <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-amber-500/20 to-transparent rounded-bl-[100px] -z-10 group-hover:from-amber-500/40 transition-colors"></div>
 
                             <div className="flex items-start justify-between mb-4">
-                                <div className="w-12 h-12 rounded-xl bg-zinc-900 border border-zinc-700 flex items-center justify-center text-amber-500 group-hover:scale-110 transition-transform shadow-inner">
+                                <div className="w-12 h-12 rounded-xl bg-zinc-900 border border-zinc-700 flex items-center justify-center text-amber-500 group-hover:scale-110 transition-transform shadow-inner shrink-0">
                                     <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
                                     </svg>
                                 </div>
-                                <span className="bg-zinc-900 border border-zinc-700 text-zinc-300 text-xs font-bold px-2.5 py-1 rounded-md shadow-sm">
-                                    {theatre.shows.length} {theatre.shows.length === 1 ? 'Show' : 'Shows'}
-                                </span>
+                                <div className="flex flex-col items-end gap-1.5">
+                                    <span className="bg-amber-500/10 border border-amber-500/20 text-amber-400 text-[10px] font-bold px-2 py-0.5 rounded shadow-sm uppercase tracking-wider block">
+                                        {theatre.size}
+                                    </span>
+                                    <span className="bg-zinc-900 border border-zinc-700 text-zinc-300 text-xs font-bold px-2 py-0.5 rounded shadow-sm block">
+                                        {theatre.shows.length} {theatre.shows.length === 1 ? 'Show' : 'Shows'}
+                                    </span>
+                                </div>
                             </div>
 
                             <h3 className="font-bold text-xl leading-tight text-white mb-2 group-hover:text-amber-400 transition-colors tracking-tight">
