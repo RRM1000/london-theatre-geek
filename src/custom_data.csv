@@ -1,6 +1,6 @@
-Show Slug,Cheapest Ticket Source,Cheapest Price,My Custom Review
-hamilton,TodayTix,£35,Incredible staging! A must see.
-wicked,Official Box Office,£25,A classic that never gets old.
-six-the-musical,TKTS Booth,£20,Short and sweet!
-the-phantom-of-the-opera,LondonTheatreDirect,£30,The staging is spectacular.
-les-miserables,Official Website,£40,A powerful and moving performance.
+Show Slug,Cheapest Ticket Source,Cheapest Price,My Custom Review,Tags
+hamilton,TodayTix,£35,Incredible staging! A must see.,Intellectual|Spectacular
+wicked,Official Box Office,£25,A classic that never gets old.,Family Friendly|Spectacular
+six-the-musical,TKTS Booth,£20,Short and sweet!,Fun|Spectacular
+the-phantom-of-the-opera,LondonTheatreDirect,£30,The staging is spectacular.,Intellectual|Adult Only
+les-miserables,Official Website,£40,A powerful and moving performance.,Intellectual|Spectacular

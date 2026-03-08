@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, useRef } from 'react';
 
 import { Show } from '@/types';
 
@@ -8,6 +8,28 @@ export default function SearchFacility({ initialShows }: { initialShows: Show[] 
     const [searchTerm, setSearchTerm] = useState('');
     const [selectedCategory, setSelectedCategory] = useState<string>('All');
     const [sortOrder, setSortOrder] = useState<'default' | 'price-asc' | 'price-desc'>('default');
+
+    // Multi-select Tags State
+    const [selectedTags, setSelectedTags] = useState<string[]>([]);
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+    const dropdownRef = useRef<HTMLDivElement>(null);
+
+    const availableTags = ['Fun', 'Intellectual', 'Family Friendly', 'Adult Only', 'Spectacular'];
+
+    // Close dropdown on click outside
+    useEffect(() => {
+        function handleClickOutside(event: MouseEvent) {
+            if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+                setIsDropdownOpen(false);
+            }
+        }
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => document.removeEventListener("mousedown", handleClickOutside);
+    }, []);
+
+    const toggleTag = (tag: string) => {
+        setSelectedTags(prev => prev.includes(tag) ? prev.filter(t => t !== tag) : [...prev, tag]);
+    };
 
     // Derive unique categories for the filter
     const categories = useMemo(() => {
@@ -30,6 +52,14 @@ export default function SearchFacility({ initialShows }: { initialShows: Show[] 
 
         if (selectedCategory && selectedCategory !== 'All') {
             result = result.filter(show => show.category === selectedCategory);
+        }
+
+        if (selectedTags.length > 0) {
+            result = result.filter(show => {
+                const showTags = show.customData?.['Tags'] || '';
+                // The show must have ALL selected tags (AND logic)
+                return selectedTags.every(tag => showTags.includes(tag));
+            });
         }
 
         if (sortOrder === 'price-asc' || sortOrder === 'price-desc') {
@@ -82,6 +112,35 @@ export default function SearchFacility({ initialShows }: { initialShows: Show[] 
                         ))}
                     </select>
 
+                    <div className="relative" ref={dropdownRef}>
+                        <button
+                            onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                            className="bg-zinc-900 border border-zinc-700/80 rounded-lg py-2.5 px-3 text-sm flex items-center justify-between w-full md:w-48 text-zinc-200 focus:outline-none focus:ring-2 focus:ring-rose-500/50"
+                        >
+                            <span className="truncate pr-2 text-left">
+                                {selectedTags.length === 0 ? 'Filter by Vibe' : `${selectedTags.length} Vibes Selected`}
+                            </span>
+                            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" className={`w-4 h-4 text-zinc-400 transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`}>
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </button>
+                        {isDropdownOpen && (
+                            <div className="absolute top-full right-0 md:left-0 mt-2 w-full md:w-48 bg-zinc-800 border border-zinc-700/80 rounded-lg shadow-xl z-50 p-2 flex flex-col gap-1">
+                                {availableTags.map(tag => (
+                                    <label key={tag} className="flex items-center gap-2 px-2 py-1.5 hover:bg-zinc-700/50 rounded cursor-pointer text-sm text-zinc-300 transition-colors">
+                                        <input
+                                            type="checkbox"
+                                            checked={selectedTags.includes(tag)}
+                                            onChange={() => toggleTag(tag)}
+                                            className="rounded bg-zinc-900 border-zinc-600 text-rose-500 focus:ring-rose-500/50 w-4 h-4 cursor-pointer"
+                                        />
+                                        <span className="truncate">{tag}</span>
+                                    </label>
+                                ))}
+                            </div>
+                        )}
+                    </div>
+
                     <select
                         value={sortOrder}
                         onChange={e => setSortOrder(e.target.value as any)}
@@ -114,6 +173,15 @@ export default function SearchFacility({ initialShows }: { initialShows: Show[] 
                                 <div className="absolute top-3 right-3 bg-zinc-900/90 backdrop-blur-md px-2.5 py-1 rounded-md text-xs font-medium text-amber-400 z-20 border border-amber-400/20 shadow-sm">
                                     {show.category}
                                 </div>
+                                {show.customData?.['Tags'] && (
+                                    <div className="absolute top-3 left-3 flex flex-col gap-1.5 z-20">
+                                        {show.customData['Tags'].split('|').map((tag: string) => (
+                                            <span key={tag} className="bg-rose-500/90 backdrop-blur-md px-2 py-0.5 rounded text-[10px] font-bold text-white shadow-sm border border-rose-400/20 uppercase tracking-widest whitespace-nowrap overflow-hidden text-ellipsis max-w-[120px]">
+                                                {tag}
+                                            </span>
+                                        ))}
+                                    </div>
+                                )}
                                 {show.customData?.['My Custom Review'] && (
                                     <div className="absolute bottom-3 left-3 bg-rose-500 text-white shadow-xl px-2 py-1 rounded text-xs font-bold uppercase z-20 tracking-wider">
                                         Review Attached
