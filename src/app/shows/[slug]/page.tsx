@@ -1,4 +1,5 @@
 import { notFound } from 'next/navigation';
+import { getCustomData } from '@/utils/customData';
 
 export const revalidate = 3600;
 
@@ -30,7 +31,15 @@ async function getShowBySlug(slug: string) {
 
     let imageUrl = `https://placehold.co/400x600/18181b/f43f5e.png?text=${encodeURIComponent(show.fieldData.name || 'Show')}`;
 
-    return { ...show.fieldData, imageurl: imageUrl };
+    // Merge in custom data from CSV
+    const customDataMap = getCustomData();
+    const customData = customDataMap[slug] || {};
+
+    return {
+        ...show.fieldData,
+        imageurl: imageUrl,
+        customData: customData
+    };
 }
 
 export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
@@ -82,9 +91,25 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
                         <svg width="20" height="20" className="w-5 h-5 mr-3 text-rose-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z" />
                         </svg>
-                        <span className="text-lg text-rose-400">{show.pricerange}</span>
+                        <span className="text-lg flex flex-col">
+                            <span className={show.customData['Cheapest Price'] ? "text-sm text-zinc-500 line-through" : "text-rose-400"}>Webflow: {show.pricerange}</span>
+                            {show.customData['Cheapest Price'] && (
+                                <span className="text-emerald-400 font-bold">
+                                    {show.customData['Cheapest Price']}
+                                    <span className="text-zinc-400 font-normal text-sm ml-2">via {show.customData['Cheapest Ticket Source']}</span>
+                                </span>
+                            )}
+                        </span>
                     </div>
                 </div>
+
+                {show.customData['My Custom Review'] && (
+                    <div className="mb-8 p-4 bg-rose-500/10 border border-rose-500/20 rounded-xl relative overflow-hidden">
+                        <div className="absolute top-0 left-0 w-1 h-full bg-rose-500"></div>
+                        <h3 className="text-rose-400 font-bold mb-1 text-sm uppercase tracking-wider">Geek Review</h3>
+                        <p className="text-zinc-200 italic">&ldquo;{show.customData['My Custom Review']}&rdquo;</p>
+                    </div>
+                )}
 
                 <div className="prose prose-zinc prose-invert prose-lg text-zinc-300">
                     <p className="leading-relaxed">

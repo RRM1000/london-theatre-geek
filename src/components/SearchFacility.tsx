@@ -12,6 +12,7 @@ type Show = {
     pricerange: string;
     shortdescription: string;
     category: string;
+    customData?: Record<string, any>;
 };
 
 export default function SearchFacility({ initialShows }: { initialShows: Show[] }) {
@@ -44,9 +45,16 @@ export default function SearchFacility({ initialShows }: { initialShows: Show[] 
 
         if (sortOrder === 'price-asc' || sortOrder === 'price-desc') {
             result.sort((a, b) => {
-                // Basic string extraction since price string is "Save X% - Tickets from £Y"
-                const priceA = parseFloat(a.pricerange?.match(/£(\d+)/)?.[1] || '0');
-                const priceB = parseFloat(b.pricerange?.match(/£(\d+)/)?.[1] || '0');
+                // Better sorting: use custom cheapest price if available, fallback to Webflow regex
+                const getPrice = (show: Show) => {
+                    if (show.customData && show.customData['Cheapest Price']) {
+                        return parseFloat(show.customData['Cheapest Price'].replace(/[^0-9.]/g, '')) || 0;
+                    }
+                    return parseFloat(show.pricerange?.match(/£(\d+)/)?.[1] || '0');
+                };
+
+                const priceA = getPrice(a);
+                const priceB = getPrice(b);
                 return sortOrder === 'price-asc' ? priceA - priceB : priceB - priceA;
             });
         }
@@ -117,6 +125,11 @@ export default function SearchFacility({ initialShows }: { initialShows: Show[] 
                                 <div className="absolute top-3 right-3 bg-zinc-900/90 backdrop-blur-md px-2.5 py-1 rounded-md text-xs font-medium text-amber-400 z-20 border border-amber-400/20 shadow-sm">
                                     {show.category}
                                 </div>
+                                {show.customData?.['My Custom Review'] && (
+                                    <div className="absolute bottom-3 left-3 bg-rose-500 text-white shadow-xl px-2 py-1 rounded text-xs font-bold uppercase z-20 tracking-wider">
+                                        Review Attached
+                                    </div>
+                                )}
                             </div>
                             <div className="p-4 flex-1 flex flex-col justify-between backdrop-blur-sm">
                                 <div>
@@ -129,10 +142,15 @@ export default function SearchFacility({ initialShows }: { initialShows: Show[] 
                                         {show.venue}
                                     </p>
                                 </div>
-                                <div className="mt-4 pt-4 border-t border-zinc-700/50 font-medium text-sm text-zinc-300 flex items-center relative">
-                                    <span className="bg-rose-500/10 text-rose-400 px-2 py-1 rounded-md mb-0">
+                                <div className="mt-4 pt-4 border-t border-zinc-700/50 flex flex-col items-start relative">
+                                    <span className={`text-sm mb-1 ${show.customData?.['Cheapest Price'] ? 'text-zinc-500 line-through' : 'bg-rose-500/10 text-rose-400 px-2 py-1 rounded-md'}`}>
                                         {show.pricerange}
                                     </span>
+                                    {show.customData?.['Cheapest Price'] && (
+                                        <div className="bg-emerald-500/10 text-emerald-400 px-2 py-1 rounded-md font-bold text-sm w-full">
+                                            {show.customData?.['Cheapest Price']} <span className="text-zinc-400 text-xs font-normal">via {show.customData?.['Cheapest Ticket Source']}</span>
+                                        </div>
+                                    )}
                                 </div>
                             </div>
                         </a>

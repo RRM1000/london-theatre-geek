@@ -8,6 +8,8 @@ const COLLECTION_ID = '69ada6bd9c227d57ec0a1466';
 // Revalidate the page frequently (every hour) so CMS changes propagate
 export const revalidate = 3600;
 
+import { getCustomData } from '@/utils/customData';
+
 async function getShows() {
     const res = await fetch(`https://api.webflow.com/v2/collections/${COLLECTION_ID}/items`, {
         headers: {
@@ -22,20 +24,23 @@ async function getShows() {
     }
 
     const data = await res.json();
+    const customDataMap = getCustomData();
 
     // Map Webflow's structure to our simpler Show type
     return data.items.map((item: any) => {
         let imageUrl = `https://placehold.co/400x600/18181b/f43f5e.png?text=${encodeURIComponent(item.fieldData.name || 'Show')}`;
+        const slug = item.fieldData.slug;
 
         return {
             id: item.id,
             name: item.fieldData.name,
-            slug: item.fieldData.slug,
+            slug: slug,
             imageurl: imageUrl,
             venue: item.fieldData.venue,
             pricerange: item.fieldData.pricerange,
             shortdescription: item.fieldData.shortdescription,
             category: item.fieldData.category,
+            customData: customDataMap[slug] || {}
         };
     });
 }
