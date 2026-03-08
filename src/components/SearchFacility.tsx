@@ -57,8 +57,8 @@ export default function SearchFacility({ initialShows }: { initialShows: Show[] 
         if (selectedTags.length > 0) {
             result = result.filter(show => {
                 const showTags = show.customData?.['Tags'] || '';
-                // The show must have ALL selected tags (AND logic)
-                return selectedTags.every(tag => showTags.includes(tag));
+                // Use OR logic so selecting multiple tags expands the results
+                return selectedTags.some(tag => showTags.includes(tag));
             });
         }
 
@@ -84,7 +84,7 @@ export default function SearchFacility({ initialShows }: { initialShows: Show[] 
     return (
         <div className="space-y-8">
             {/* Search Header Config */}
-            <div className="bg-zinc-800/50 border border-zinc-700/50 p-4 rounded-xl flex flex-col md:flex-row gap-4 items-center justify-between backdrop-blur-sm">
+            <div className="bg-zinc-800/50 border border-zinc-700/50 p-4 rounded-xl flex flex-col md:flex-row gap-4 items-center justify-between backdrop-blur-sm relative z-50">
 
                 {/* Live Search */}
                 <div className="relative w-full md:w-96 flex-1">
