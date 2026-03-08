@@ -79,7 +79,7 @@ export default function SearchFacility({ initialShows }: { initialShows: Show[] 
         }
 
         return result;
-    }, [initialShows, searchTerm, selectedCategory, sortOrder]);
+    }, [initialShows, searchTerm, selectedCategory, sortOrder, selectedTags]);
 
     return (
         <div className="space-y-8">
