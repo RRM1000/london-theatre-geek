@@ -28,7 +28,7 @@ async function getShows() {
 
     // Map Webflow's structure to our simpler Show type
     return data.items.map((item: any) => {
-        let imageUrl = `https://placehold.co/400x600/18181b/f43f5e.png?text=${encodeURIComponent(item.fieldData.name || 'Show')}`;
+        let imageUrl = `https://images.unsplash.com/photo-1507676184212-d0330a15233c?q=80&w=800&auto=format&fit=crop`;
         const slug = item.fieldData.slug;
 
         return {
