@@ -29,7 +29,7 @@ async function getShowDataBySlug(slug: string) {
     const showRaw = data.items.find((item: any) => item.fieldData.slug === slug);
     if (!showRaw) return null;
 
-    let imageUrl = `https://images.unsplash.com/photo-1507676184212-d0330a15233c?q=80&w=800&auto=format&fit=crop`;
+    let imageUrl = `/show-placeholder.png`;
 
     // Merge in custom data from CSV
     const customDataMap = getCustomData();
@@ -53,7 +53,7 @@ async function getShowDataBySlug(slug: string) {
     }
 
     const similarShows = similarRaw.map((item: any) => {
-        let simImageUrl = `https://images.unsplash.com/photo-1507676184212-d0330a15233c?q=80&w=800&auto=format&fit=crop`;
+        let simImageUrl = `/show-placeholder.png`;
         return {
             ...item.fieldData,
             imageurl: simImageUrl,
