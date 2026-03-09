@@ -49,7 +49,7 @@ export async function getTheatres(): Promise<Theatre[]> {
     // Map all shows first
     const allShows: Show[] = data.items.map((item: any) => {
         const slug = item.fieldData.slug;
-        let imageUrl = `/show-placeholder.png`;
+        let imageUrl = `/shows/${slug}.jpg`;
 
         return {
             id: item.id,

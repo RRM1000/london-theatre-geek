@@ -28,8 +28,8 @@ async function getShows() {
 
     // Map Webflow's structure to our simpler Show type
     return data.items.map((item: any) => {
-        let imageUrl = `/show-placeholder.png`;
         const slug = item.fieldData.slug;
+        let imageUrl = `/shows/${slug}.jpg`;
 
         return {
             id: item.id,

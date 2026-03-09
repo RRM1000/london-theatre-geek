@@ -96,6 +96,7 @@ export default async function TheatrePage({ params }: { params: Promise<{ slug: 
                             <div className="relative aspect-[3/4] overflow-hidden bg-zinc-900">
                                 <img
                                     src={show.imageurl}
+                                    onError={(e) => { e.currentTarget.src = "/show-placeholder.png"; }}
                                     alt={show.name}
                                     className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500 relative z-10"
                                     loading="lazy"

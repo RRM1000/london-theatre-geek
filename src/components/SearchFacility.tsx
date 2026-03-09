@@ -166,6 +166,7 @@ export default function SearchFacility({ initialShows }: { initialShows: Show[] 
                                 {/* Next/Image would be ideal, but using standard img for external blob urls for speed and simplicity in template */}
                                 <img
                                     src={show.imageurl}
+                                    onError={(e) => { e.currentTarget.src = "/show-placeholder.png"; }}
                                     alt={show.name}
                                     className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500 relative z-10"
                                     loading="lazy"
