@@ -36,8 +36,8 @@ export default function RootLayout({
                 className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} antialiased bg-background-dark text-slate-100 min-h-screen font-sans`}
                 suppressHydrationWarning
             >
-                <header className="border-b border-border-dark bg-background-dark/95 sticky top-0 z-50 backdrop-blur-sm">
-                    <div className="max-w-[1280px] mx-auto px-6 h-16 flex items-center justify-between">
+                <header className="border-b border-border-dark bg-background-dark/80 backdrop-blur-md sticky top-0 z-50 neon-glow">
+                    <div className="container mx-auto px-6 h-20 flex items-center justify-between">
                         <div className="flex items-center gap-10">
                             <a href="/" className="flex items-center gap-3 text-primary hover:opacity-80 transition-opacity">
                                 <h1 className="text-xl font-black uppercase tracking-tighter marquee-text">
@@ -45,8 +45,8 @@ export default function RootLayout({
                                 </h1>
                             </a>
                             <nav className="hidden lg:flex items-center gap-8">
-                                <a href="/" className="text-sm font-bold uppercase tracking-widest hover:text-primary transition-colors">Shows</a>
-                                <a href="/theatres" className="text-sm font-bold uppercase tracking-widest hover:text-primary transition-colors">Theatres</a>
+                                <a href="/shows" className="text-sm font-bold uppercase tracking-widest hover:text-primary transition-colors text-slate-300">Shows</a>
+                                <a href="/theatres" className="text-sm font-bold uppercase tracking-widest hover:text-primary transition-colors text-slate-300">Theatres</a>
                             </nav>
                         </div>
                     </div>
