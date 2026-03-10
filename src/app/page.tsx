@@ -55,16 +55,45 @@ export default async function Home() {
 
     return (
         <div className="space-y-12 pb-24">
-            <section className="text-center py-10 md:py-20 bg-background-dark rounded-3xl border border-slate-200 shadow-sm relative overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-t from-white/40 via-transparent to-white/40 z-10"></div>
-                <div className="relative z-20">
-                    <span className="inline-block px-4 py-1 rounded-full bg-primary/20 text-primary text-xs font-bold uppercase tracking-widest mb-6">Featured This Week</span>
-                    <h2 className="text-4xl md:text-5xl font-black tracking-tight mb-4 text-slate-900">
-                        London <span className="text-primary">Theatre</span> Week
+            <section className="text-center py-12 md:py-20 bg-card-dark rounded-3xl border border-border-dark neon-glow relative overflow-hidden group">
+                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary to-transparent opacity-50"></div>
+
+                <div className="relative z-20 flex flex-col items-center justify-center">
+                    <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-background-dark border border-primary/30 text-primary text-[10px] md:text-xs font-black uppercase tracking-widest mb-6 shadow-[0_0_15px_rgba(245,245,61,0.2)]">
+                        <svg width="14" height="14" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clipRule="evenodd" />
+                        </svg>
+                        London's Unofficial Guide
+                    </span>
+
+                    <h2 className="text-4xl md:text-6xl font-black tracking-tighter mb-6 text-white uppercase marquee-text leading-tight max-w-4xl mx-auto px-4">
+                        The Best Seats. <span className="text-primary block md:inline mt-2 md:mt-0">The Lowest Prices.</span>
                     </h2>
-                    <p className="text-xl text-slate-600 max-w-2xl mx-auto px-4 font-medium leading-relaxed">
-                        Discover incredible West End shows. Unbeatable prices.
+
+                    <p className="text-lg md:text-xl text-slate-300 max-w-2xl mx-auto px-4 font-medium leading-relaxed mb-10">
+                        Your completely independent guide to navigating West End tickets. We cut through the noise to tell you exactly where to find the cheapest deals on the internet.
                     </p>
+
+                    <div className="flex flex-wrap justify-center gap-4 md:gap-8 px-4">
+                        <div className="flex flex-col items-center gap-2">
+                            <div className="w-12 h-12 rounded-xl bg-background-dark border border-border-dark flex items-center justify-center text-primary shadow-lg">
+                                <span className="text-2xl">🎟️</span>
+                            </div>
+                            <span className="text-xs font-bold uppercase tracking-widest text-slate-300">Cheapest Seats</span>
+                        </div>
+                        <div className="flex flex-col items-center gap-2">
+                            <div className="w-12 h-12 rounded-xl bg-background-dark border border-border-dark flex items-center justify-center text-primary shadow-lg">
+                                <span className="text-2xl">📊</span>
+                            </div>
+                            <span className="text-xs font-bold uppercase tracking-widest text-slate-300">Market Averages</span>
+                        </div>
+                        <div className="flex flex-col items-center gap-2">
+                            <div className="w-12 h-12 rounded-xl bg-background-dark border border-border-dark flex items-center justify-center text-primary shadow-lg">
+                                <span className="text-2xl">✊</span>
+                            </div>
+                            <span className="text-xs font-bold uppercase tracking-widest text-slate-300">100% Independent</span>
+                        </div>
+                    </div>
                 </div>
             </section>
 
