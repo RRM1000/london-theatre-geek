@@ -76,7 +76,7 @@ export default function TheatreSearchFacility({ initialTheatres }: { initialThea
 
                             <div className="flex items-start justify-between mb-4">
                                 <div className="w-12 h-12 rounded-xl bg-background-dark border border-border-dark flex items-center justify-center text-primary group-hover:scale-110 transition-transform shrink-0">
-                                    <span className="material-symbols-outlined text-2xl">theater_comedy</span>
+                                    <span className="font-black text-2xl uppercase tracking-tighter marquee-text">{theatre.name.charAt(0)}</span>
                                 </div>
                                 <div className="flex flex-col items-end gap-1.5">
                                     <span className="bg-primary/10 border border-primary/20 text-primary text-[10px] font-black px-2 py-0.5 rounded shadow-sm uppercase tracking-widest block">

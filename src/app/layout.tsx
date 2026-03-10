@@ -40,7 +40,6 @@ export default function RootLayout({
                     <div className="max-w-[1280px] mx-auto px-6 h-16 flex items-center justify-between">
                         <div className="flex items-center gap-10">
                             <a href="/" className="flex items-center gap-3 text-primary hover:opacity-80 transition-opacity">
-                                <span className="material-symbols-outlined text-3xl">theater_comedy</span>
                                 <h1 className="text-xl font-black uppercase tracking-tighter marquee-text">
                                     London Theatre Geek
                                 </h1>
