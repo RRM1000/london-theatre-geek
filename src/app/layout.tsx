@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -9,6 +9,11 @@ const geistSans = Geist({
 
 const geistMono = Geist_Mono({
     variable: "--font-geist-mono",
+    subsets: ["latin"],
+});
+
+const inter = Inter({
+    variable: "--font-inter",
     subsets: ["latin"],
 });
 
@@ -23,24 +28,41 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="en">
+        <html lang="en" className="dark">
+            <head>
+                <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&display=swap" rel="stylesheet" />
+            </head>
             <body
-                className={`${geistSans.variable} ${geistMono.variable} antialiased bg-zinc-900 text-white`}
+                className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} antialiased bg-background-dark text-slate-100 min-h-screen font-sans`}
                 suppressHydrationWarning
             >
-                <main className="max-w-7xl mx-auto p-4 sm:p-6 lg:p-8">
-                    <header className="py-6 border-b border-zinc-800 mb-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-                        <a href="/" className="text-2xl font-bold bg-gradient-to-r from-amber-400 to-rose-500 bg-clip-text text-transparent hover:opacity-80 transition-opacity">
-                            London Theatre Geek
-                        </a>
-                        <nav className="flex items-center gap-6">
-                            <a href="/" className="text-sm font-medium text-zinc-300 hover:text-rose-400 transition-colors">Shows</a>
-                            <a href="/theatres" className="text-sm font-medium text-zinc-300 hover:text-rose-400 transition-colors">Theatres</a>
-                        </nav>
-                    </header>
+                <header className="border-b border-border-dark bg-background-dark/95 sticky top-0 z-50 backdrop-blur-sm">
+                    <div className="max-w-[1280px] mx-auto px-6 h-16 flex items-center justify-between">
+                        <div className="flex items-center gap-10">
+                            <a href="/" className="flex items-center gap-3 text-primary hover:opacity-80 transition-opacity">
+                                <span className="material-symbols-outlined text-3xl">theater_comedy</span>
+                                <h1 className="text-xl font-black uppercase tracking-tighter marquee-text">
+                                    London Theatre Geek
+                                </h1>
+                            </a>
+                            <nav className="hidden lg:flex items-center gap-8">
+                                <a href="/" className="text-sm font-bold uppercase tracking-widest hover:text-primary transition-colors">Shows</a>
+                                <a href="/theatres" className="text-sm font-bold uppercase tracking-widest hover:text-primary transition-colors">Theatres</a>
+                            </nav>
+                        </div>
+                    </div>
+                </header>
+
+                <main className="max-w-[1280px] mx-auto pb-20 w-full">
                     {children}
                 </main>
+
+                <footer className="bg-background-dark border-t border-border-dark py-12 text-slate-500">
+                    <div className="max-w-[1280px] mx-auto px-6 text-center text-xs font-medium">
+                        © {new Date().getFullYear()} London Theatre Geek. Obsessed with the stage.
+                    </div>
+                </footer>
             </body>
-        </html>
+        </html >
     );
 }

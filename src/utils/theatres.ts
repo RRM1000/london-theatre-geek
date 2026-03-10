@@ -1,5 +1,7 @@
 import { Show } from '@/types';
 import { getCustomData } from './customData';
+import fs from 'fs';
+import path from 'path';
 
 const WEBFLOW_API_TOKEN = '2fa739d7456e30751df41d402e19f154ce6994ea1a32890e1a7aed5fc53f16e6';
 const COLLECTION_ID = '69ada6bd9c227d57ec0a1466';
@@ -49,7 +51,8 @@ export async function getTheatres(): Promise<Theatre[]> {
     // Map all shows first
     const allShows: Show[] = data.items.map((item: any) => {
         const slug = item.fieldData.slug;
-        let imageUrl = `/shows/${slug}.jpg`;
+        const filePath = path.join(process.cwd(), 'public', 'shows', `${slug}.jpg`);
+        let imageUrl = fs.existsSync(filePath) ? `/shows/${slug}.jpg` : `/show-placeholder.png`;
 
         return {
             id: item.id,

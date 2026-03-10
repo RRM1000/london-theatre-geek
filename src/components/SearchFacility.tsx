@@ -84,11 +84,11 @@ export default function SearchFacility({ initialShows }: { initialShows: Show[] 
     return (
         <div className="space-y-8">
             {/* Search Header Config */}
-            <div className="sticky top-4 bg-zinc-800/90 border border-zinc-700/50 p-4 rounded-xl flex flex-col md:flex-row gap-4 items-center justify-between backdrop-blur-xl z-50 shadow-[0_8px_30px_rgb(0,0,0,0.5)] transition-all">
+            <div className="sticky top-4 bg-card-dark border border-border-dark p-4 rounded-2xl flex flex-col md:flex-row gap-4 items-center justify-between z-50 shadow-xl transition-all">
 
                 {/* Live Search */}
                 <div className="relative w-full md:w-96 flex-1">
-                    <svg width="20" height="20" className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-zinc-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg width="20" height="20" className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                     </svg>
                     <input
@@ -96,7 +96,7 @@ export default function SearchFacility({ initialShows }: { initialShows: Show[] 
                         placeholder="Search for a show, theatre, or keyword..."
                         value={searchTerm}
                         onChange={e => setSearchTerm(e.target.value)}
-                        className="w-full bg-zinc-900 border border-zinc-700/80 rounded-lg py-2.5 pl-10 pr-4 text-sm focus:outline-none focus:ring-2 focus:ring-rose-500/50 focus:border-rose-500 transition-all text-white placeholder-zinc-400"
+                        className="w-full bg-background-dark border border-border-dark rounded-lg py-2.5 pl-10 pr-4 text-sm focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary transition-all text-white placeholder-slate-400"
                     />
                 </div>
 
@@ -105,7 +105,7 @@ export default function SearchFacility({ initialShows }: { initialShows: Show[] 
                     <select
                         value={selectedCategory}
                         onChange={e => setSelectedCategory(e.target.value)}
-                        className="flex-1 md:w-40 bg-zinc-900 border border-zinc-700/80 rounded-lg py-2.5 px-3 text-sm focus:outline-none focus:ring-2 focus:ring-rose-500/50 appearance-none text-zinc-200"
+                        className="flex-1 md:w-40 bg-background-dark border border-border-dark rounded-lg py-2.5 px-3 text-sm focus:outline-none focus:ring-1 focus:ring-primary appearance-none text-slate-300"
                     >
                         {categories.map(cat => (
                             <option key={cat} value={cat}>{cat}</option>
@@ -115,24 +115,24 @@ export default function SearchFacility({ initialShows }: { initialShows: Show[] 
                     <div className="relative" ref={dropdownRef}>
                         <button
                             onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                            className="bg-zinc-900 border border-zinc-700/80 rounded-lg py-2.5 px-3 text-sm flex items-center justify-between w-full md:w-48 text-zinc-200 focus:outline-none focus:ring-2 focus:ring-rose-500/50"
+                            className="bg-background-dark border border-border-dark rounded-lg py-2.5 px-3 text-sm flex items-center justify-between w-full md:w-48 text-slate-300 focus:outline-none focus:ring-1 focus:ring-primary"
                         >
                             <span className="truncate pr-2 text-left">
                                 {selectedTags.length === 0 ? 'Filter by Vibe' : `${selectedTags.length} Vibes Selected`}
                             </span>
-                            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" className={`w-4 h-4 text-zinc-400 transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`}>
+                            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" className={`w-4 h-4 text-primary transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`}>
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                             </svg>
                         </button>
                         {isDropdownOpen && (
-                            <div className="absolute top-full right-0 md:left-0 mt-2 w-full md:w-48 bg-zinc-800 border border-zinc-700/80 rounded-lg shadow-xl z-50 p-2 flex flex-col gap-1">
+                            <div className="absolute top-full right-0 md:left-0 mt-2 w-full md:w-48 bg-card-dark border border-border-dark rounded-lg shadow-xl z-50 p-2 flex flex-col gap-1">
                                 {availableTags.map(tag => (
-                                    <label key={tag} className="flex items-center gap-2 px-2 py-1.5 hover:bg-zinc-700/50 rounded cursor-pointer text-sm text-zinc-300 transition-colors">
+                                    <label key={tag} className="flex items-center gap-2 px-2 py-1.5 hover:bg-background-dark rounded cursor-pointer text-sm text-slate-300 transition-colors">
                                         <input
                                             type="checkbox"
                                             checked={selectedTags.includes(tag)}
                                             onChange={() => toggleTag(tag)}
-                                            className="rounded bg-zinc-900 border-zinc-600 text-rose-500 focus:ring-rose-500/50 w-4 h-4 cursor-pointer"
+                                            className="rounded bg-background-dark border-border-dark text-primary focus:ring-primary/50 w-4 h-4 cursor-pointer"
                                         />
                                         <span className="truncate">{tag}</span>
                                     </label>
@@ -144,7 +144,7 @@ export default function SearchFacility({ initialShows }: { initialShows: Show[] 
                     <select
                         value={sortOrder}
                         onChange={e => setSortOrder(e.target.value as any)}
-                        className="flex-1 md:w-40 bg-zinc-900 border border-zinc-700/80 rounded-lg py-2.5 px-3 text-sm focus:outline-none focus:ring-2 focus:ring-rose-500/50 appearance-none text-zinc-200"
+                        className="flex-1 md:w-40 bg-background-dark border border-border-dark rounded-lg py-2.5 px-3 text-sm focus:outline-none focus:ring-1 focus:ring-primary appearance-none text-slate-300"
                     >
                         <option value="default">Sort: Recommended</option>
                         <option value="price-asc">Price: Low to High</option>
@@ -155,44 +155,44 @@ export default function SearchFacility({ initialShows }: { initialShows: Show[] 
 
             {/* Results Grid */}
             {filteredShows.length === 0 ? (
-                <div className="text-center py-20 text-zinc-500">
+                <div className="text-center py-20 text-slate-500">
                     <p className="text-lg">No shows found matching your criteria.</p>
                 </div>
             ) : (
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                     {filteredShows.map(show => (
-                        <a key={show.id} href={`/shows/${show.slug}`} className="group flex flex-col bg-zinc-800/40 border border-zinc-700/30 rounded-xl overflow-hidden hover:border-rose-500/30 hover:bg-zinc-800/60 transition-all hover:-translate-y-1 shadow-lg hover:shadow-rose-500/10">
-                            <div className="relative aspect-[3/4] overflow-hidden bg-zinc-900">
+                        <a key={show.id} href={`/shows/${show.slug}`} className="group flex flex-col bg-card-dark border border-border-dark rounded-xl overflow-hidden hover:border-primary/50 transition-all shadow-sm">
+                            <div className="relative aspect-[3/4] overflow-hidden bg-background-dark">
                                 {/* Next/Image would be ideal, but using standard img for external blob urls for speed and simplicity in template */}
                                 <img
                                     src={show.imageurl}
                                     onError={(e) => { e.currentTarget.src = "/show-placeholder.png"; }}
                                     alt={show.name}
-                                    className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500 relative z-10"
+                                    className="object-cover w-full h-full group-hover:scale-110 transition-transform duration-500 relative z-10"
                                     loading="lazy"
                                 />
-                                <div className="absolute top-3 right-3 bg-zinc-900/90 backdrop-blur-md px-2.5 py-1 rounded-md text-xs font-medium text-amber-400 z-20 border border-amber-400/20 shadow-sm">
+                                <div className="absolute top-3 right-3 bg-background-dark/90 backdrop-blur-md px-2.5 py-1 rounded-md text-xs font-medium text-slate-300 z-20 border border-border-dark shadow-sm">
                                     {show.category}
                                 </div>
                                 {show.customData?.['Tags'] && (
                                     <div className="absolute top-3 left-3 flex flex-col gap-1.5 z-20">
                                         {show.customData['Tags'].split('|').map((tag: string) => (
-                                            <span key={tag} className="bg-rose-500/90 backdrop-blur-md px-2 py-0.5 rounded text-[10px] font-bold text-white shadow-sm border border-rose-400/20 uppercase tracking-widest whitespace-nowrap overflow-hidden text-ellipsis max-w-[120px]">
+                                            <div key={tag} className="absolute top-[-10px] right-[-140px] bg-primary text-background-dark font-black px-3 py-1 rounded text-xs uppercase shadow-xl mt-3 mr-3 whitespace-nowrap">
                                                 {tag}
-                                            </span>
+                                            </div>
                                         ))}
                                     </div>
                                 )}
                                 {show.customData?.['My Custom Review'] && (
-                                    <div className="absolute bottom-3 left-3 bg-rose-500 text-white shadow-xl px-2 py-1 rounded text-xs font-bold uppercase z-20 tracking-wider">
+                                    <div className="absolute bottom-3 left-3 bg-primary text-background-dark shadow-xl px-2 py-1 rounded text-[10px] font-black uppercase z-20 tracking-wider">
                                         Review Attached
                                     </div>
                                 )}
                             </div>
-                            <div className="p-4 flex-1 flex flex-col justify-between backdrop-blur-sm">
+                            <div className="p-4 flex-1 flex flex-col justify-between">
                                 <div>
-                                    <h3 className="font-semibold text-lg py-1 leading-tight text-zinc-100 group-hover:text-rose-400 transition-colors">{show.name}</h3>
-                                    <p className="text-sm text-zinc-400 flex items-center gap-1.5 mt-1">
+                                    <h3 className="font-black text-2xl uppercase leading-tight tracking-tight text-white group-hover:text-primary transition-colors">{show.name}</h3>
+                                    <p className="text-sm text-slate-400 flex items-center gap-1.5 mt-2">
                                         <svg width="14" height="14" className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -200,13 +200,13 @@ export default function SearchFacility({ initialShows }: { initialShows: Show[] 
                                         {show.venue}
                                     </p>
                                 </div>
-                                <div className="mt-4 pt-4 border-t border-zinc-700/50 flex flex-col items-start relative">
-                                    <span className={`text-sm mb-1 ${show.customData?.['Cheapest Price'] ? 'text-zinc-500 line-through' : 'bg-rose-500/10 text-rose-400 px-2 py-1 rounded-md'}`}>
+                                <div className="mt-4 pt-4 border-t border-border-dark flex flex-col items-start relative">
+                                    <span className={`text-sm mb-1 ${show.customData?.['Cheapest Price'] ? 'text-slate-500 line-through' : 'bg-background-dark text-slate-300 px-2 py-1 rounded-md font-bold'}`}>
                                         {show.pricerange}
                                     </span>
                                     {show.customData?.['Cheapest Price'] && (
-                                        <div className="bg-emerald-500/10 text-emerald-400 px-2 py-1 rounded-md font-bold text-sm w-full">
-                                            {show.customData?.['Cheapest Price']} <span className="text-zinc-400 text-xs font-normal">via {show.customData?.['Cheapest Ticket Source']}</span>
+                                        <div className="bg-primary/10 text-primary px-3 py-1.5 rounded-lg border border-primary/30 font-bold text-sm">
+                                            from {show.customData?.['Cheapest Price']} <span className="text-slate-500 text-xs font-normal relative -top-px ml-1">via {show.customData?.['Cheapest Ticket Source']}</span>
                                         </div>
                                     )}
                                 </div>

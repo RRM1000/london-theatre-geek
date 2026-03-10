@@ -1,5 +1,7 @@
 import { notFound } from 'next/navigation';
 import { getCustomData } from '@/utils/customData';
+import fs from 'fs';
+import path from 'path';
 
 export const revalidate = 3600;
 
@@ -29,7 +31,8 @@ async function getShowDataBySlug(slug: string) {
     const showRaw = data.items.find((item: any) => item.fieldData.slug === slug);
     if (!showRaw) return null;
 
-    let imageUrl = `/shows/${slug}.jpg`;
+    const mainFilePath = path.join(process.cwd(), 'public', 'shows', `${slug}.jpg`);
+    let imageUrl = fs.existsSync(mainFilePath) ? `/shows/${slug}.jpg` : `/show-placeholder.png`;
 
     // Merge in custom data from CSV
     const customDataMap = getCustomData();
@@ -53,7 +56,9 @@ async function getShowDataBySlug(slug: string) {
     }
 
     const similarShows = similarRaw.map((item: any) => {
-        let simImageUrl = `/shows/${item.fieldData.slug}.jpg`;
+        const simSlug = item.fieldData.slug;
+        const simPath = path.join(process.cwd(), 'public', 'shows', `${simSlug}.jpg`);
+        let simImageUrl = fs.existsSync(simPath) ? `/shows/${simSlug}.jpg` : `/show-placeholder.png`;
         return {
             ...item.fieldData,
             imageurl: simImageUrl,
@@ -82,7 +87,6 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
                     <div className="relative rounded-2xl overflow-hidden aspect-[3/4] shadow-[0_20px_50px_rgba(244,63,94,0.15)] ring-1 ring-zinc-700">
                         <img
                             src={show.imageurl}
-                            onError={(e) => { e.currentTarget.src = "/show-placeholder.png"; }}
                             alt={show.name}
                             className="object-cover w-full h-full"
                         />
@@ -170,7 +174,6 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
                                 <div className="w-1/3 shrink-0 relative">
                                     <img
                                         src={sim.imageurl}
-                                        onError={(e) => { e.currentTarget.src = "/show-placeholder.png"; }}
                                         alt={sim.name}
                                         className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500"
                                         loading="lazy"

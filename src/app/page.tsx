@@ -8,6 +8,9 @@ const COLLECTION_ID = '69ada6bd9c227d57ec0a1466';
 // Revalidate the page frequently (every hour) so CMS changes propagate
 export const revalidate = 3600;
 
+import { Show } from '@/types';
+import fs from 'fs';
+import path from 'path';
 import { getCustomData } from '@/utils/customData';
 
 async function getShows() {
@@ -29,7 +32,9 @@ async function getShows() {
     // Map Webflow's structure to our simpler Show type
     return data.items.map((item: any) => {
         const slug = item.fieldData.slug;
-        let imageUrl = `/shows/${slug}.jpg`;
+        // Check if the specific show poster exists locally, otherwise use the generated placeholder
+        const filePath = path.join(process.cwd(), 'public', 'shows', `${slug}.jpg`);
+        let imageUrl = fs.existsSync(filePath) ? `/shows/${slug}.jpg` : `/show-placeholder.png`;
 
         return {
             id: item.id,
@@ -50,13 +55,17 @@ export default async function Home() {
 
     return (
         <div className="space-y-12 pb-24">
-            <section className="text-center py-10 md:py-20 bg-gradient-to-b from-rose-500/10 to-transparent rounded-3xl border border-rose-500/20 shadow-[0_0_100px_rgba(244,63,94,0.1)]">
-                <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-4 text-white">
-                    London Theatre Week
-                </h2>
-                <p className="text-xl text-zinc-400 max-w-2xl mx-auto px-4 font-light">
-                    Discover incredible West End shows. Unbeatable prices.
-                </p>
+            <section className="text-center py-10 md:py-20 bg-background-dark rounded-3xl border border-slate-200 shadow-sm relative overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-t from-white/40 via-transparent to-white/40 z-10"></div>
+                <div className="relative z-20">
+                    <span className="inline-block px-4 py-1 rounded-full bg-primary/20 text-primary text-xs font-bold uppercase tracking-widest mb-6">Featured This Week</span>
+                    <h2 className="text-4xl md:text-5xl font-black tracking-tight mb-4 text-slate-900">
+                        London <span className="text-primary">Theatre</span> Week
+                    </h2>
+                    <p className="text-xl text-slate-600 max-w-2xl mx-auto px-4 font-medium leading-relaxed">
+                        Discover incredible West End shows. Unbeatable prices.
+                    </p>
+                </div>
             </section>
 
             <section>
