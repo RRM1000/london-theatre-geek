@@ -93,71 +93,69 @@ export default async function LandingPage() {
                 </div>
             </section>
 
-            <section className="px-4">
-                <div className="flex flex-col items-center justify-center mb-12 text-center">
-                    <h3 className="text-3xl md:text-4xl font-black uppercase tracking-tight text-white mb-4">
-                        Top 10 Cheapest <span className="text-primary">West End</span> Shows
-                    </h3>
-                    <p className="text-slate-400 font-medium max-w-xl text-lg">
-                        The undisputed lowest entry prices for top-tier productions in London right now.
-                    </p>
-                </div>
+            <section className="px-4 container mx-auto mb-20">
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-8">
+                    {/* LEFT COLUMN: TOP 10 LIST */}
+                    <div className="lg:col-span-1">
+                        <div className="mb-8">
+                            <h3 className="text-3xl lg:text-4xl font-black uppercase tracking-tight text-white mb-2 leading-tight">
+                                Top 10 Cheapest <span className="text-primary block">West End Shows</span>
+                            </h3>
+                            <p className="text-slate-400 font-medium text-sm md:text-base">
+                                The undisputed lowest entry prices for top-tier productions in London right now.
+                            </p>
+                        </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
-                    {cheapestShows.map((show: any, index: number) => (
-                        <a key={show.id} href={`/shows/${show.slug}`} className="group flex flex-col bg-card-dark border border-border-dark rounded-xl overflow-hidden hover:border-primary/50 transition-all hover:-translate-y-2 shadow-lg hover:neon-glow relative h-full">
-                            <div className="absolute -top-3 -left-3 w-10 h-10 bg-primary text-background-dark rounded-full font-black text-xl flex items-center justify-center border-4 border-background-dark z-30 shadow-lg shadow-primary/30">
-                                {index + 1}
-                            </div>
-                            <div className="relative aspect-[3/4] overflow-hidden bg-background-dark shrink-0">
-                                <img
-                                    src={show.imageurl}
-                                    alt={show.name}
-                                    className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500 relative z-10"
-                                    loading="lazy"
-                                />
-                                <div className="absolute top-2 right-2 bg-background-dark/90 backdrop-blur-md px-1.5 py-0.5 rounded text-[10px] uppercase font-black tracking-widest text-primary border border-primary/20 z-20">
-                                    {show.category}
-                                </div>
-                            </div>
-                            <div className="p-4 flex flex-col justify-between flex-1">
-                                <div>
-                                    <h3 className="font-black text-lg uppercase tracking-tight text-white group-hover:text-primary transition-colors line-clamp-2 leading-tight">{show.name}</h3>
-                                </div>
-                                <div className="mt-4 pt-3 border-t border-border-dark flex flex-col">
-                                    <span className={`text-xs mb-1 font-medium uppercase tracking-wider ${show.customData?.['Cheapest Price'] ? 'text-slate-500 line-through' : 'text-primary'}`}>
-                                        Webflow: {show.pricerange}
-                                    </span>
-                                    {show.customData?.['Cheapest Price'] && (
-                                        <div className="text-primary font-black text-xl flex items-baseline gap-1 mt-1">
-                                            {show.customData['Cheapest Price']}
-                                            <span className="text-slate-400 text-[10px] font-medium uppercase tracking-widest">
-                                                via {show.customData['Cheapest Ticket Source']}
-                                            </span>
+                        <div className="flex flex-col gap-4">
+                            {cheapestShows.map((show: any, index: number) => (
+                                <a key={show.id} href={`/shows/${show.slug}`} className="group flex bg-card-dark border border-border-dark rounded-xl overflow-hidden hover:border-primary/50 transition-all shadow-lg hover:neon-glow relative h-28 md:h-32">
+                                    <div className="absolute top-0 right-0 w-8 h-8 md:w-10 md:h-10 bg-primary text-background-dark rounded-bl-xl font-black text-sm md:text-lg flex items-center justify-center border-b-2 border-l-2 border-border-dark z-30 shadow-md">
+                                        #{index + 1}
+                                    </div>
+                                    <div className="relative aspect-square md:aspect-[3/4] overflow-hidden bg-background-dark shrink-0 h-full border-r border-border-dark">
+                                        <img
+                                            src={show.imageurl}
+                                            alt={show.name}
+                                            className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500 relative z-10"
+                                            loading="lazy"
+                                        />
+                                    </div>
+                                    <div className="p-3 md:p-4 flex flex-col justify-center flex-1 min-w-0">
+                                        <div className="text-[9px] md:text-[10px] uppercase font-black tracking-widest text-primary mb-1">
+                                            {show.category}
                                         </div>
-                                    )}
-                                </div>
-                            </div>
-                        </a>
-                    ))}
-                </div>
-            </section>
+                                        <h3 className="font-black text-sm md:text-base uppercase tracking-tight text-white group-hover:text-primary transition-colors truncate">
+                                            {show.name}
+                                        </h3>
+                                        <div className="mt-auto hidden sm:flex text-slate-500 text-[10px] uppercase tracking-wider font-medium truncate">
+                                            {show.venue}
+                                        </div>
+                                    </div>
+                                </a>
+                            ))}
+                        </div>
+                    </div>
 
-            <section className="bg-primary/5 border border-primary/20 rounded-3xl p-8 md:p-12 text-center max-w-4xl mx-auto neon-glow">
-                <div className="w-16 h-16 mx-auto bg-primary rounded-full flex items-center justify-center text-background-dark mb-6 shadow-lg shadow-primary/20">
-                    <svg width="32" height="32" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                    </svg>
+                    {/* RIGHT COLUMN: PROMOS / GUIDES */}
+                    <div className="lg:col-span-2 flex flex-col gap-6">
+                        <section className="bg-primary/5 border border-primary/20 rounded-3xl p-8 md:p-12 text-center h-full flex flex-col items-center justify-center neon-glow">
+                            <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center text-background-dark mb-6 shadow-[0_0_20px_rgba(245,245,61,0.3)] shrink-0">
+                                <svg width="32" height="32" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                                </svg>
+                            </div>
+                            <h3 className="text-3xl md:text-4xl lg:text-5xl font-black uppercase tracking-tight text-white mb-6 leading-tight">
+                                The Ultimate <br /><span className="text-primary marquee-text">Ticket Buying</span> Guide
+                            </h3>
+                            <p className="text-slate-300 font-medium leading-relaxed mb-8 max-w-xl text-lg md:text-xl">
+                                Don't let dynamic pricing algorithms drain your wallet. Learn the insider secrets to securing rush tickets, entering daily lotteries, and avoiding hidden booking fees.
+                            </p>
+                            <a href="/guides/cheap-tickets" className="inline-block bg-primary hover:bg-primary/90 text-background-dark font-black uppercase tracking-widest py-4 px-10 rounded-xl shadow-lg ring-1 ring-border-dark hover:ring-primary/50 transition-all text-base hover:-translate-y-1">
+                                Read The Free Guide
+                            </a>
+                        </section>
+                    </div>
                 </div>
-                <h3 className="text-2xl md:text-3xl font-black uppercase tracking-tight text-white mb-4">
-                    The Ultimate Ticket Buying Guide
-                </h3>
-                <p className="text-slate-300 font-medium leading-relaxed mb-8 max-w-2xl mx-auto">
-                    Don't let dynamic pricing algorithms drain your wallet. Learn the insider secrets to securing rush tickets, entering daily lotteries, and avoiding hidden booking fees.
-                </p>
-                <a href="/guides/cheap-tickets" className="inline-block bg-primary hover:bg-primary/90 text-background-dark font-black uppercase tracking-widest py-3 px-8 rounded-xl shadow-lg ring-1 ring-border-dark hover:ring-primary/50 transition-all text-sm">
-                    Read The Free Guide
-                </a>
             </section>
         </div>
     );

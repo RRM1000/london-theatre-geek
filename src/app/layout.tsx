@@ -44,9 +44,16 @@ export default function RootLayout({
                                     London Theatre Geek
                                 </h1>
                             </a>
+                            {/* MOBILE NAV (always visible for now to match exactly what you had) */}
+                            <div className="flex md:hidden gap-6 px-4 items-center font-bold text-xs tracking-widest text-slate-300">
+                                <a href="/shows" className="hover:text-primary transition-colors">SHOWS</a>
+                                <a href="/theatres" className="hover:text-primary transition-colors">THEATRES</a>
+                                <a href="/guides/cheap-tickets" className="hover:text-primary transition-colors text-[10px]">GUIDES</a>
+                            </div>
                             <nav className="hidden lg:flex items-center gap-8">
                                 <a href="/shows" className="text-sm font-bold uppercase tracking-widest hover:text-primary transition-colors text-slate-300">Shows</a>
                                 <a href="/theatres" className="text-sm font-bold uppercase tracking-widest hover:text-primary transition-colors text-slate-300">Theatres</a>
+                                <a href="/guides/cheap-tickets" className="text-sm font-bold uppercase tracking-widest hover:text-primary transition-colors text-slate-300">Ticket Guides</a>
                             </nav>
                         </div>
                     </div>
