@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation';
 import { getCustomData } from '@/utils/customData';
 import fs from 'fs';
 import path from 'path';
+import CommentSection from '@/components/CommentSection';
 
 export const revalidate = 3600;
 
@@ -159,6 +160,9 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
                 </div>
 
             </article>
+
+            {/* Supabase Comments System */}
+            <CommentSection showSlug={show.slug} />
 
             {similarShows.length > 0 && (
                 <section className="max-w-4xl mx-auto mt-12">

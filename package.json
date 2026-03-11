@@ -9,6 +9,9 @@
         "lint": "next lint"
     },
     "dependencies": {
+        "@supabase/supabase-js": "^2.99.1",
+        "@upstash/ratelimit": "^2.0.8",
+        "@upstash/redis": "^1.36.4",
         "csv-parse": "^6.1.0",
         "material-symbols": "^0.40.2",
         "next": "^16.1.6",
