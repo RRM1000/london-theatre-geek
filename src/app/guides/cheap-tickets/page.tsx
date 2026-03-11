@@ -32,119 +32,71 @@ export default function CheapTicketsGuide() {
 
             <div className="container mx-auto px-4 max-w-4xl space-y-16">
 
-                {/* SECTION 1: SAME DAY */}
-                <section className="bg-card-dark border border-border-dark rounded-3xl p-8 md:p-12 relative overflow-hidden group hover:neon-glow transition-shadow">
-                    <div className="absolute -top-10 -right-10 text-primary opacity-5 transform rotate-12 group-hover:scale-110 transition-transform duration-700">
-                        <svg width="200" height="200" fill="currentColor" viewBox="0 0 20 20">
-                            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd" />
-                        </svg>
-                    </div>
+                {/* DYNAMIC PRICING INTRO */}
+                <section className="bg-background-dark border border-border-dark rounded-3xl p-8 md:p-12 relative overflow-hidden text-center">
+                    <h2 className="text-2xl md:text-3xl font-black uppercase tracking-tight text-white mb-6">
+                        The Secret to West End Pricing
+                    </h2>
+                    <p className="text-slate-300 font-medium leading-relaxed mb-6">
+                        Buying theatre tickets is exactly like buying airline tickets: <strong>Prices are dynamic based on demand.</strong>
+                    </p>
+                    <p className="text-slate-400 text-sm md:text-base leading-relaxed">
+                        There is no "one trick" to getting cheap tickets. Your strategy has to change entirely based on whether you want to see a show <em>tonight</em>, whether you need a <em>specific weekend</em>, or if you just want to see <em>anything</em> for the absolute lowest possible price.
+                    </p>
+                </section>
 
-                    <div className="relative z-10">
-                        <div className="w-12 h-12 bg-background-dark rounded-xl border border-primary/20 flex items-center justify-center text-primary mb-6 shadow-inner">
+                {/* GUIDE CARDS GRID */}
+                <section className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    {/* CARD 1 */}
+                    <a href="/guides/cheap-tickets/same-day" className="bg-card-dark border border-border-dark rounded-2xl p-8 hover:border-primary/50 transition-all hover:-translate-y-2 shadow-lg hover:neon-glow group flex flex-col h-full relative overflow-hidden">
+                        <div className="absolute top-0 left-0 w-full h-1 bg-primary/20 group-hover:bg-primary transition-colors"></div>
+                        <div className="w-12 h-12 bg-background-dark rounded-xl border border-primary/20 flex items-center justify-center text-primary mb-6 shadow-inner group-hover:scale-110 transition-transform">
                             <span className="font-black text-xl">1</span>
                         </div>
-                        <h2 className="text-3xl font-black uppercase tracking-tight text-white mb-6 leading-tight">
-                            Buying Tickets For <span className="text-primary">The Same Day</span>
-                        </h2>
-
-                        <div className="space-y-6 text-slate-300 font-medium leading-relaxed">
-                            <p>
-                                If you are flexible and already in London, same-day tickets offer some of the steepest discounts available.
-                            </p>
-
-                            <div className="bg-background-dark rounded-xl p-6 border border-border-dark">
-                                <h4 className="text-primary font-bold uppercase tracking-widest text-sm mb-2">Rush & Day Seats</h4>
-                                <p className="text-sm">Many major productions hold back a block of front-row or excellent stalls tickets to release exclusively at 10:00 AM on the day of the performance via the TodayTix app. You must be lightning fast (add your card details down to the CVV to your account beforehand). Alternatively, some theatres still operate physical Box Office queues opening directly at 10 AM for cheap returned/held tickets.</p>
-                            </div>
-
-                            <div className="bg-background-dark rounded-xl p-6 border border-border-dark">
-                                <h4 className="text-primary font-bold uppercase tracking-widest text-sm mb-2">Daily Lotteries</h4>
-                                <p className="text-sm">High-demand shows (like Hamilton, Cabaret, or Book of Mormon) run daily or weekly lotteries where you can win £20-£30 premium seats. Always enter these if you have a free evening. Winning is sheer luck, but it is the only way to sit front row center for the town's hottest shows without paying £200+.</p>
-                            </div>
-
-                            <div className="bg-background-dark rounded-xl p-6 border border-border-dark">
-                                <h4 className="text-primary font-bold uppercase tracking-widest text-sm mb-2">TKTS Booth (Leicester Square)</h4>
-                                <p className="text-sm">The official TKTS booth sells discounted tickets for shows that haven't sold out that afternoon. While you likely won't find blockbuster hits here, it is fantastic for finding £30-£40 seats to long-running classics or newer plays struggling to fill seats on a Tuesday matinee.</p>
-                            </div>
+                        <h3 className="text-xl font-black uppercase tracking-tight text-white mb-4 group-hover:text-primary transition-colors">
+                            Same Day Tickets
+                        </h3>
+                        <p className="text-slate-400 text-sm font-medium leading-relaxed flex-1">
+                            The strategies to use when you are flexible and already in London. Rush tickets, lotteries, and day seats.
+                        </p>
+                        <div className="mt-6 flex items-center gap-2 text-primary text-sm font-bold uppercase tracking-widest">
+                            Read Guide <span>→</span>
                         </div>
-                    </div>
-                </section>
+                    </a>
 
-                {/* SECTION 2: SPECIFIC DATE */}
-                <section className="bg-card-dark border border-border-dark rounded-3xl p-8 md:p-12 relative overflow-hidden group hover:neon-glow transition-shadow">
-                    <div className="absolute -top-10 -right-10 text-primary opacity-5 transform rotate-12 group-hover:scale-110 transition-transform duration-700">
-                        <svg width="200" height="200" fill="currentColor" viewBox="0 0 20 20">
-                            <path fillRule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clipRule="evenodd" />
-                        </svg>
-                    </div>
-
-                    <div className="relative z-10">
-                        <div className="w-12 h-12 bg-background-dark rounded-xl border border-primary/20 flex items-center justify-center text-primary mb-6 shadow-inner">
+                    {/* CARD 2 */}
+                    <a href="/guides/cheap-tickets/specific-date" className="bg-card-dark border border-border-dark rounded-2xl p-8 hover:border-primary/50 transition-all hover:-translate-y-2 shadow-lg hover:neon-glow group flex flex-col h-full relative overflow-hidden">
+                        <div className="absolute top-0 left-0 w-full h-1 bg-primary/20 group-hover:bg-primary transition-colors"></div>
+                        <div className="w-12 h-12 bg-background-dark rounded-xl border border-primary/20 flex items-center justify-center text-primary mb-6 shadow-inner group-hover:scale-110 transition-transform">
                             <span className="font-black text-xl">2</span>
                         </div>
-                        <h2 className="text-3xl font-black uppercase tracking-tight text-white mb-6 leading-tight">
-                            Buying Tickets For <span className="text-primary">A Specific Date</span>
-                        </h2>
-
-                        <div className="space-y-6 text-slate-300 font-medium leading-relaxed">
-                            <p>
-                                If you are traveling and need to lock in a specific weekend, your strategy must completely shift to avoiding dynamic pricing spikes and hidden fees.
-                            </p>
-
-                            <ul className="space-y-4">
-                                <li className="flex gap-4">
-                                    <span className="text-primary shrink-0">❖</span>
-                                    <span><strong>Always buy direct first.</strong> Check the official theatre's website (e.g., Delfont Mackintosh or LW Theatres) before using third-party sellers. They own the inventory and often have the lowest baseline base price.</span>
-                                </li>
-                                <li className="flex gap-4">
-                                    <span className="text-primary shrink-0">❖</span>
-                                    <span><strong>Beware of hidden booking fees.</strong> Sites like Ticketmaster or LondonTheatreDirect often tack on £3-£8 <em>per ticket</em> simply for the privilege of checking out. Always click all the way through to the final checkout screen to compare true prices.</span>
-                                </li>
-                                <li className="flex gap-4">
-                                    <span className="text-primary shrink-0">❖</span>
-                                    <span><strong>Check for "Restricted View" bargains.</strong> For many plays, a "restricted view" might simply mean a safety rail blocks the extreme left corner of the stage—something that rarely ruins a show. These seats can often be snagged for 50-70% less than a full-price seat directly next to it. View <a href="https://seatplan.com" target="_blank" className="text-primary hover:underline" rel="noreferrer">SeatPlan.com</a> to see crowdsourced photos from exact seats before gambling!</span>
-                                </li>
-                            </ul>
+                        <h3 className="text-xl font-black uppercase tracking-tight text-white mb-4 group-hover:text-primary transition-colors">
+                            Specific Date
+                        </h3>
+                        <p className="text-slate-400 text-sm font-medium leading-relaxed flex-1">
+                            The strategies to use when locking in a specific weekend. Avoiding dynamic spikes and hidden fees.
+                        </p>
+                        <div className="mt-6 flex items-center gap-2 text-primary text-sm font-bold uppercase tracking-widest">
+                            Read Guide <span>→</span>
                         </div>
-                    </div>
-                </section>
+                    </a>
 
-                {/* SECTION 3: ABSOLUTE CHEAPEST */}
-                <section className="bg-card-dark border border-border-dark rounded-3xl p-8 md:p-12 relative overflow-hidden group hover:neon-glow transition-shadow">
-                    <div className="absolute -top-10 -right-10 text-primary opacity-5 transform rotate-12 group-hover:scale-110 transition-transform duration-700">
-                        <svg width="200" height="200" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M4 4a2 2 0 00-2 2v1h16V6a2 2 0 00-2-2H4z" />
-                            <path fillRule="evenodd" d="M18 9H2v5a2 2 0 002 2h12a2 2 0 002-2V9zM4 13a1 1 0 011-1h1a1 1 0 110 2H5a1 1 0 01-1-1zm5-1a1 1 0 100 2h1a1 1 0 100-2H9z" clipRule="evenodd" />
-                        </svg>
-                    </div>
-
-                    <div className="relative z-10">
-                        <div className="w-12 h-12 bg-background-dark rounded-xl border border-primary/20 flex items-center justify-center text-primary mb-6 shadow-inner">
+                    {/* CARD 3 */}
+                    <a href="/guides/cheap-tickets/cheapest" className="bg-card-dark border border-border-dark rounded-2xl p-8 hover:border-primary/50 transition-all hover:-translate-y-2 shadow-lg hover:neon-glow group flex flex-col h-full relative overflow-hidden">
+                        <div className="absolute top-0 left-0 w-full h-1 bg-primary/20 group-hover:bg-primary transition-colors"></div>
+                        <div className="w-12 h-12 bg-background-dark rounded-xl border border-primary/20 flex items-center justify-center text-primary mb-6 shadow-inner group-hover:scale-110 transition-transform">
                             <span className="font-black text-xl">3</span>
                         </div>
-                        <h2 className="text-3xl font-black uppercase tracking-tight text-white mb-6 leading-tight">
-                            Hunting For The <span className="text-primary">Absolute Cheapest</span> Ticket
-                        </h2>
-
-                        <div className="space-y-6 text-slate-300 font-medium leading-relaxed">
-                            <p>
-                                If you don't care *what* you see or *when* you see it, and just want the thrill of live theatre for less than the price of a cinema ticket:
-                            </p>
-
-                            <div className="grid md:grid-cols-2 gap-6 mt-6">
-                                <div className="bg-background-dark rounded-xl p-6 border border-border-dark flex flex-col items-center justify-center text-center hover:border-primary/50 transition-colors">
-                                    <h4 className="text-primary font-black uppercase tracking-widest text-lg mb-2">Central Tickets / ShowFilmFirst</h4>
-                                    <p className="text-sm">These are "seat-filling" agencies. You pay a £4-£6 "admin fee" and receive free tickets to previews or struggling shows to ensure the auditorium looks full for reviewers. The catch? You rarely get to pick exactly what you see, and secrecy is strictly required.</p>
-                                </div>
-
-                                <div className="bg-background-dark rounded-xl p-6 border border-border-dark flex flex-col items-center justify-center text-center hover:border-primary/50 transition-colors">
-                                    <h4 className="text-primary font-black uppercase tracking-widest text-lg mb-2">Previews & Mid-Week</h4>
-                                    <p className="text-sm">Shows are roughly 20-30% cheaper during their "Preview" phase (the 2-4 weeks prior to opening night when they are still tweaking lighting/scripts). If a show is past previews, Tuesday and Wednesday evenings are universally the cheapest performances of the week.</p>
-                                </div>
-                            </div>
+                        <h3 className="text-xl font-black uppercase tracking-tight text-white mb-4 group-hover:text-primary transition-colors">
+                            Absolute Cheapest
+                        </h3>
+                        <p className="text-slate-400 text-sm font-medium leading-relaxed flex-1">
+                            The strategies to use when you just want the thrill of live theatre for less than a cinema ticket. Seat filling!
+                        </p>
+                        <div className="mt-6 flex items-center gap-2 text-primary text-sm font-bold uppercase tracking-widest">
+                            Read Guide <span>→</span>
                         </div>
-                    </div>
+                    </a>
                 </section>
             </div>
         </div>
