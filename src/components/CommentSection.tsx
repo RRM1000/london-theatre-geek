@@ -1,9 +1,14 @@
 import { createClient } from '@supabase/supabase-js';
 import CommentForm from './CommentForm';
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
-const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
-const supabase = supabaseUrl && supabaseKey ? createClient(supabaseUrl, supabaseKey) : null;
+// Do not initialize at the top level to prevent Vercel static build crashes
+// when environment variables are missing
+const getSupabaseClient = () => {
+    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+    const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+    if (!supabaseUrl || !supabaseKey) return null;
+    return createClient(supabaseUrl, supabaseKey);
+};
 
 import { submitComment } from '@/actions/comments';
 
@@ -15,6 +20,8 @@ interface Comment {
 }
 
 export default async function CommentSection({ showSlug }: { showSlug: string }) {
+    const supabase = getSupabaseClient();
+
     if (!supabase) {
         return (
             <section className="max-w-4xl mx-auto mt-20 border-t-2 border-primary pt-16">

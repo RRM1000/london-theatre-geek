@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Inter, Orbitron, Lato } from "next/font/google";
+import { Geist, Geist_Mono, Inter, Space_Grotesk, Fira_Code, Lato } from "next/font/google";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -17,8 +17,13 @@ const inter = Inter({
     subsets: ["latin"],
 });
 
-const orbitron = Orbitron({
-    variable: "--font-orbitron",
+const spaceGrotesk = Space_Grotesk({
+    variable: "--font-space-grotesk",
+    subsets: ["latin"],
+});
+
+const firaCode = Fira_Code({
+    variable: "--font-fira-code",
     subsets: ["latin"],
 });
 
@@ -45,14 +50,14 @@ export default function RootLayout({
                 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&display=swap" rel="stylesheet" />
             </head>
             <body
-                className={`${orbitron.variable} ${lato.variable} ${geistSans.variable} ${geistMono.variable} ${inter.variable} antialiased bg-background-dark text-slate-100 min-h-screen font-sans`}
+                className={`${spaceGrotesk.variable} ${firaCode.variable} ${lato.variable} ${geistSans.variable} ${geistMono.variable} ${inter.variable} antialiased bg-background-dark text-slate-100 min-h-screen font-sans cyberpunk-gradient`}
                 suppressHydrationWarning
             >
-                <header className="border-b border-border-dark bg-background-dark/80 backdrop-blur-md sticky top-0 z-50 neon-glow">
+                <header className="glass-card sticky top-0 z-50 transition-all">
                     <div className="container mx-auto px-6 h-20 flex items-center justify-between">
                         <div className="flex items-center gap-10">
-                            <a href="/" className="flex items-center gap-3 text-primary hover:opacity-80 transition-opacity">
-                                <h1 className="text-xl font-black uppercase tracking-tighter marquee-text">
+                            <a href="/" className="flex items-center gap-3 text-primary hover:text-white transition-colors">
+                                <h1 className="text-xl font-bold uppercase tracking-tight">
                                     London Theatre Geek
                                 </h1>
                             </a>

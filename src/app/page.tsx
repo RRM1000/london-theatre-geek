@@ -71,90 +71,97 @@ export default async function LandingPage() {
     const cheapestShows = await getCheapestShows();
 
     return (
-        <div className="space-y-24 pb-24">
-            <section className="text-center py-12 md:py-20 bg-card-dark rounded-3xl border border-border-dark neon-glow relative overflow-hidden group">
-                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary to-transparent opacity-50"></div>
+        <div className="space-y-24 pb-32">
+            <section className="text-center py-16 md:py-24 glass-card border-[0.5px] relative overflow-hidden group mx-4 md:mx-auto max-w-7xl mt-8 rounded-[2rem]">
+                <div className="absolute top-0 left-0 w-full h-[2px] cyberpunk-gradient-strong opacity-80"></div>
 
-                <div className="relative z-20 flex flex-col items-center justify-center">
-                    <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-background-dark border border-primary/30 text-primary text-[10px] md:text-xs font-black uppercase tracking-widest mb-6 shadow-[0_0_15px_rgba(245,245,61,0.2)]">
+                <div className="relative z-20 flex flex-col items-center justify-center p-8">
+                    <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-background-dark/50 backdrop-blur border border-primary/30 text-primary text-[10px] md:text-xs font-black uppercase tracking-widest mb-6 shadow-xl">
                         <svg width="14" height="14" fill="currentColor" viewBox="0 0 20 20">
                             <path fillRule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clipRule="evenodd" />
                         </svg>
                         London's Unofficial Guide
                     </span>
 
-                    <h2 className="text-4xl md:text-6xl font-black tracking-tighter mb-6 text-white uppercase marquee-text leading-tight max-w-4xl mx-auto px-4">
-                        The Best Seats. <span className="text-primary block md:inline mt-2 md:mt-0">The Lowest Prices.</span>
+                    <h2 className="text-5xl md:text-7xl font-black tracking-tighter mb-6 text-white uppercase marquee-text leading-none max-w-4xl mx-auto">
+                        The Best Seats.<br /> <span className="text-primary mt-2">The Lowest Prices.</span>
                     </h2>
 
-                    <p className="text-lg md:text-xl text-slate-300 max-w-2xl mx-auto px-4 font-medium leading-relaxed mb-6">
+                    <p className="text-lg md:text-2xl text-slate-300 max-w-2xl mx-auto font-medium leading-relaxed mb-6 mix-blend-screen">
                         Your completely independent guide to navigating West End tickets. We cut through the noise to tell you exactly where to find the cheapest deals on the internet.
                     </p>
                 </div>
             </section>
 
-            <section className="px-4 container mx-auto mb-20">
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-8">
-                    {/* LEFT COLUMN: TOP 10 LIST */}
-                    <div className="lg:col-span-1">
-                        <div className="mb-8">
-                            <h3 className="text-3xl lg:text-4xl font-black uppercase tracking-tight text-white mb-2 leading-tight">
-                                Top 10 Cheapest <span className="text-primary block">West End Shows</span>
-                            </h3>
-                            <p className="text-slate-400 font-medium text-sm md:text-base">
-                                The undisputed lowest entry prices for top-tier productions in London right now.
-                            </p>
-                        </div>
+            {/* CAROUSEL SECTION */}
+            <section className="mb-20">
+                <div className="container mx-auto px-4 mb-6">
+                    <h3 className="text-3xl lg:text-4xl font-black uppercase tracking-tight text-white mb-2 leading-tight flex justify-between items-end">
+                        <span>Top 10 Cheapest <span className="text-primary">West End Shows</span></span>
+                    </h3>
+                    <p className="text-slate-400 font-medium text-sm md:text-base">
+                        The undisputed lowest entry prices for top-tier productions in London right now.
+                    </p>
+                </div>
 
-                        <div className="flex flex-col gap-4">
-                            {cheapestShows.map((show: any, index: number) => (
-                                <a key={show.id} href={`/shows/${show.slug}`} className="group flex bg-card-dark border border-border-dark rounded-xl overflow-hidden hover:border-primary/50 transition-all shadow-lg hover:neon-glow relative h-28 md:h-32">
-                                    <div className="absolute top-0 right-0 w-8 h-8 md:w-10 md:h-10 bg-primary text-background-dark rounded-bl-xl font-black text-sm md:text-lg flex items-center justify-center border-b-2 border-l-2 border-border-dark z-30 shadow-md">
-                                        #{index + 1}
-                                    </div>
-                                    <div className="relative aspect-square md:aspect-[3/4] overflow-hidden bg-background-dark shrink-0 h-full border-r border-border-dark">
-                                        <img
-                                            src={show.imageurl}
-                                            alt={show.name}
-                                            className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500 relative z-10"
-                                            loading="lazy"
-                                        />
-                                    </div>
-                                    <div className="p-3 md:p-4 flex flex-col justify-center flex-1 min-w-0">
-                                        <div className="text-[9px] md:text-[10px] uppercase font-black tracking-widest text-primary mb-1">
-                                            {show.category}
-                                        </div>
-                                        <h3 className="font-black text-sm md:text-base uppercase tracking-tight text-white group-hover:text-primary transition-colors truncate">
-                                            {show.name}
-                                        </h3>
-                                        <div className="mt-auto hidden sm:flex text-slate-500 text-[10px] uppercase tracking-wider font-medium truncate">
-                                            {show.venue}
-                                        </div>
-                                    </div>
-                                </a>
-                            ))}
-                        </div>
-                    </div>
-
-                    {/* RIGHT COLUMN: PROMOS / GUIDES */}
-                    <div className="lg:col-span-2 flex flex-col gap-6">
-                        <section className="bg-primary/5 border border-primary/20 rounded-3xl p-8 md:p-12 text-center h-full flex flex-col items-center justify-center neon-glow">
-                            <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center text-background-dark mb-6 shadow-[0_0_20px_rgba(245,245,61,0.3)] shrink-0">
-                                <svg width="32" height="32" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                                </svg>
+                <div className="flex overflow-x-auto gap-6 pb-8 px-4 snap-x snap-mandatory hide-scrollbar mx-auto max-w-[1280px]">
+                    {cheapestShows.map((show: any, index: number) => (
+                        <a key={show.id} href={`/shows/${show.slug}`} className="group flex flex-col glass-card glass-card-edge hover-glow rounded-xl overflow-hidden transition-all shadow-lg snap-start shrink-0 w-[240px] md:w-[280px] h-auto relative">
+                            <div className="absolute top-0 right-0 w-12 h-12 bg-primary/90 backdrop-blur text-background-dark rounded-bl-3xl font-black text-xl flex items-center justify-center border-b border-l border-primary z-30 shadow-xl">
+                                #{index + 1}
                             </div>
-                            <h3 className="text-3xl md:text-4xl lg:text-5xl font-black uppercase tracking-tight text-white mb-6 leading-tight">
-                                The Ultimate <br /><span className="text-primary marquee-text">Ticket Buying</span> Guide
-                            </h3>
-                            <p className="text-slate-300 font-medium leading-relaxed mb-8 max-w-xl text-lg md:text-xl">
-                                Don't let dynamic pricing algorithms drain your wallet. Learn the insider secrets to securing rush tickets, entering daily lotteries, and avoiding hidden booking fees.
-                            </p>
-                            <a href="/guides/cheap-tickets" className="inline-block bg-primary hover:bg-primary/90 text-background-dark font-black uppercase tracking-widest py-4 px-10 rounded-xl shadow-lg ring-1 ring-border-dark hover:ring-primary/50 transition-all text-base hover:-translate-y-1">
-                                Read The Free Guide
-                            </a>
-                        </section>
+                            <div className="relative aspect-[3/4] overflow-hidden bg-background-dark shrink-0 border-b border-border-dark">
+                                <img
+                                    src={show.imageurl}
+                                    alt={show.name}
+                                    className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500 relative z-10"
+                                    loading="lazy"
+                                />
+                                <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-background-dark to-transparent z-10 pointer-events-none"></div>
+                                <h3 className="absolute bottom-4 left-4 right-4 font-black text-2xl uppercase tracking-tighter text-white z-20 group-hover:text-primary transition-colors leading-none">
+                                    {show.name}
+                                </h3>
+                            </div>
+                            <div className="p-5 flex flex-col justify-between flex-1">
+                                <div className="flex justify-between items-start mb-2">
+                                    <div className="text-[10px] uppercase font-black tracking-widest text-primary shrink-0">
+                                        {show.category}
+                                    </div>
+                                    <div className="text-slate-400 text-[10px] uppercase font-medium truncate text-right ml-2">
+                                        {show.venue}
+                                    </div>
+                                </div>
+
+                                <div className="mt-4 pt-4 border-t border-border-dark flex items-center justify-between">
+                                    <span className="text-white text-xs font-bold uppercase">From</span>
+                                    <span className="text-primary font-bold text-2xl data-font shadow-[0_0_15px_rgba(218,165,32,0.15)] bg-primary/10 px-2 py-0.5 rounded">£{show.minPrice}</span>
+                                </div>
+                            </div>
+                        </a>
+                    ))}
+                </div>
+            </section>
+
+            {/* PROMOS / GUIDES */}
+            <section className="px-4 container mx-auto mb-20 max-w-5xl">
+                <div className="glass-card hover-glow rounded-[2.5rem] p-10 md:p-16 text-center flex flex-col items-center justify-center relative overflow-hidden group">
+                    <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 blur-[100px] rounded-full group-hover:bg-primary/20 transition-colors"></div>
+                    <div className="absolute bottom-0 left-0 w-64 h-64 bg-secondary/20 blur-[100px] rounded-full"></div>
+
+                    <div className="w-20 h-20 bg-primary/20 backdrop-blur rounded-full flex items-center justify-center text-primary mb-8 border border-primary/30 shrink-0 relative z-10">
+                        <svg width="40" height="40" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                        </svg>
                     </div>
+                    <h3 className="text-4xl md:text-5xl lg:text-6xl font-black uppercase tracking-tight text-white mb-6 leading-tight relative z-10">
+                        The Ultimate <br /><span className="text-primary marquee-text">Ticket Buying</span> Guide
+                    </h3>
+                    <p className="text-slate-300 font-medium leading-relaxed mb-10 max-w-2xl text-lg md:text-xl relative z-10">
+                        Don't let dynamic pricing algorithms drain your wallet. Learn the insider secrets to securing rush tickets, entering daily lotteries, and avoiding hidden booking fees.
+                    </p>
+                    <a href="/guides/cheap-tickets" className="relative z-10 inline-block bg-primary hover:bg-white text-background-dark font-black uppercase tracking-widest py-4 px-12 rounded-xl shadow-[0_10px_30px_rgba(218,165,32,0.3)] transition-all text-lg hover:-translate-y-1">
+                        Read The Free Guide
+                    </a>
                 </div>
             </section>
         </div>

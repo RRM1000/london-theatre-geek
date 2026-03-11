@@ -84,7 +84,7 @@ export default function SearchFacility({ initialShows }: { initialShows: Show[] 
     return (
         <div className="space-y-8">
             {/* Search Header Config */}
-            <div className="sticky top-4 bg-card-dark border border-border-dark p-4 rounded-2xl flex flex-col md:flex-row gap-4 items-center justify-between z-50 shadow-xl transition-all">
+            <div className="sticky top-4 glass-card p-4 rounded-2xl flex flex-col md:flex-row gap-4 items-center justify-between z-50 transition-all">
 
                 {/* Live Search */}
                 <div className="relative w-full md:w-96 flex-1">
@@ -161,7 +161,7 @@ export default function SearchFacility({ initialShows }: { initialShows: Show[] 
             ) : (
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                     {filteredShows.map(show => (
-                        <a key={show.id} href={`/shows/${show.slug}`} className="group flex flex-col bg-card-dark border border-border-dark rounded-xl overflow-hidden hover:border-primary/50 transition-all shadow-sm">
+                        <a key={show.id} href={`/shows/${show.slug}`} className="group flex flex-col glass-card glass-card-edge hover-glow rounded-xl overflow-hidden transition-all">
                             <div className="relative aspect-[3/4] overflow-hidden bg-background-dark">
                                 {/* Next/Image would be ideal, but using standard img for external blob urls for speed and simplicity in template */}
                                 <img
@@ -201,12 +201,12 @@ export default function SearchFacility({ initialShows }: { initialShows: Show[] 
                                     </p>
                                 </div>
                                 <div className="mt-4 pt-4 border-t border-border-dark flex flex-col items-start relative">
-                                    <span className={`text-sm mb-1 ${show.customData?.['Cheapest Price'] ? 'text-slate-500 line-through' : 'bg-background-dark text-slate-300 px-2 py-1 rounded-md font-bold'}`}>
+                                    <span className={`data-font text-sm mb-1 ${show.customData?.['Cheapest Price'] ? 'text-slate-500 line-through' : 'bg-background-dark text-slate-300 px-2 py-1 rounded-md font-bold'}`}>
                                         {show.pricerange}
                                     </span>
                                     {show.customData?.['Cheapest Price'] && (
-                                        <div className="bg-primary/10 text-primary px-3 py-1.5 rounded-lg border border-primary/30 font-bold text-sm">
-                                            from {show.customData?.['Cheapest Price']} <span className="text-slate-500 text-xs font-normal relative -top-px ml-1">via {show.customData?.['Cheapest Ticket Source']}</span>
+                                        <div className="bg-primary/10 text-primary px-3 py-1.5 rounded-lg border border-primary/30 font-bold text-sm data-font">
+                                            from {show.customData?.['Cheapest Price']} <span className="text-slate-500 text-xs font-normal relative -top-px ml-1 font-sans">via {show.customData?.['Cheapest Ticket Source']}</span>
                                         </div>
                                     )}
                                 </div>

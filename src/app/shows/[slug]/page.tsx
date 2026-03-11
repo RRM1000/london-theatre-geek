@@ -81,8 +81,8 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
     const { show, similarShows } = showData;
 
     return (
-        <div className="space-y-12 pb-24">
-            <article className="max-w-4xl mx-auto mt-10 p-6 md:p-10 bg-card-dark border border-border-dark neon-glow rounded-3xl shadow-xl flex flex-col md:flex-row gap-10">
+        <div className="space-y-12 pb-32 md:pb-24">
+            <article className="max-w-4xl mx-auto mt-10 p-6 md:p-10 glass-card glass-card-edge rounded-3xl shadow-xl flex flex-col md:flex-row gap-10">
 
                 <div className="md:w-1/2 shrink-0">
                     <div className="relative rounded-2xl overflow-hidden aspect-[3/4] shadow-[0_20px_50px_rgba(245,245,61,0.15)] ring-1 ring-border-dark">
@@ -125,11 +125,11 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z" />
                             </svg>
                             <span className="text-lg flex flex-col font-medium">
-                                <span className={show.customData['Cheapest Price'] ? "text-sm text-slate-400 line-through" : "text-primary"}>Webflow: {show.pricerange}</span>
+                                <span className={show.customData['Cheapest Price'] ? "data-font text-sm text-slate-400 line-through" : "data-font text-primary"}>Webflow: {show.pricerange}</span>
                                 {show.customData['Cheapest Price'] && (
-                                    <span className="text-primary font-black text-xl">
+                                    <span className="text-primary font-bold text-xl data-font">
                                         {show.customData['Cheapest Price']}
-                                        <span className="text-slate-400 font-medium text-xs ml-2 uppercase tracking-wider">via {show.customData['Cheapest Ticket Source']}</span>
+                                        <span className="text-slate-400 font-medium text-xs ml-2 uppercase font-sans tracking-wider">via {show.customData['Cheapest Ticket Source']}</span>
                                     </span>
                                 )}
                             </span>
@@ -152,14 +152,25 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
                         </p>
                     </div>
 
-                    <div className="mt-10">
-                        <button className="w-full bg-primary hover:bg-primary/90 text-background-dark font-black py-4 px-8 rounded-xl shadow-lg ring-1 ring-border-dark hover:ring-primary/50 transition-all uppercase tracking-widest text-lg">
+                    <div className="mt-10 hidden md:block">
+                        <button className="w-full bg-primary hover:bg-white text-background-dark font-black py-4 px-8 rounded-xl shadow-lg ring-1 ring-border-dark transition-all uppercase tracking-widest text-lg hover-glow">
                             Book Tickets Now
                         </button>
                     </div>
                 </div>
 
             </article>
+
+            {/* Sticky Mobile Action Bar */}
+            <div className="md:hidden fixed bottom-0 left-0 w-full glass-card border-t border-border-dark p-4 z-50 shadow-[0_-10px_40px_rgba(0,0,0,0.5)]">
+                <div className="flex justify-between items-center mb-2 px-2">
+                    <span className="text-sm font-bold uppercase text-slate-300">Tickets From</span>
+                    <span className="text-xl font-bold text-primary data-font">{show.customData['Cheapest Price'] || show.pricerange}</span>
+                </div>
+                <button className="w-full bg-primary active:bg-white text-background-dark font-black py-3 px-8 rounded-xl shadow-lg transition-all uppercase tracking-widest text-base">
+                    Book Now
+                </button>
+            </div>
 
             {/* Supabase Comments System */}
             <CommentSection showSlug={show.slug} />
@@ -174,7 +185,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
                     </h2>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                         {similarShows.map((sim: any) => (
-                            <a key={sim.slug} href={`/shows/${sim.slug}`} className="group flex bg-card-dark border border-border-dark rounded-xl overflow-hidden hover:border-primary/50 transition-all hover:-translate-y-1 shadow-lg hover:neon-glow h-32">
+                            <a key={sim.slug} href={`/shows/${sim.slug}`} className="group flex glass-card glass-card-edge hover-glow rounded-xl overflow-hidden transition-all h-32">
                                 <div className="w-1/3 shrink-0 relative bg-background-dark">
                                     <img
                                         src={sim.imageurl}
@@ -196,11 +207,11 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
                                         {sim.venue}
                                     </p>
                                     <div className="mt-2 text-sm flex items-center">
-                                        <span className={sim.customData?.['Cheapest Price'] ? "text-slate-500 line-through text-xs font-medium" : "text-primary font-bold"}>
+                                        <span className={sim.customData?.['Cheapest Price'] ? "data-font text-slate-500 line-through text-xs" : "data-font text-primary font-bold"}>
                                             {sim.pricerange}
                                         </span>
                                         {sim.customData?.['Cheapest Price'] && (
-                                            <span className="ml-2 text-primary font-black text-sm">
+                                            <span className="ml-2 text-primary font-bold text-sm data-font">
                                                 {sim.customData['Cheapest Price']}
                                             </span>
                                         )}

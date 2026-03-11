@@ -6,10 +6,13 @@ import { Redis } from '@upstash/redis';
 import { headers } from 'next/headers';
 import { revalidatePath } from 'next/cache';
 
-// Initialize Supabase client safely so it doesn't crash the build if env vars are missing
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
-const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
-const supabase = supabaseUrl && supabaseKey ? createClient(supabaseUrl, supabaseKey) : null;
+// Initialize Supabase client lazily
+const getSupabaseClient = () => {
+    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+    const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+    if (!supabaseUrl || !supabaseKey) return null;
+    return createClient(supabaseUrl, supabaseKey);
+};
 
 // Initialize Upstash Redis for rate limiting
 // Fallback to a dummy object if env vars are missing during build/setup
@@ -20,11 +23,11 @@ const redis = process.env.UPSTASH_REDIS_REST_URL && process.env.UPSTASH_REDIS_RE
     })
     : null;
 
-// Allow 5 submissions per 60 seconds per IP
+// Allow 2 submissions per 24 hours per IP
 const ratelimit = redis
     ? new Ratelimit({
         redis,
-        limiter: Ratelimit.slidingWindow(5, '60 s'),
+        limiter: Ratelimit.slidingWindow(2, '24 h'),
     })
     : null;
 
@@ -57,18 +60,18 @@ export async function submitComment(prevState: any, formData: FormData) {
         const cleanName = author_name.replace(/<[^>]*>?/gm, '');
         const cleanContent = content.replace(/<[^>]*>?/gm, '');
 
-        // 3. Rate Limiting Check
         if (ratelimit) {
             const headersList = await headers();
             const ip = headersList.get('x-forwarded-for') || '127.0.0.1';
             const { success } = await ratelimit.limit(`ratelimit_comments_${ip}`);
 
             if (!success) {
-                return { success: false, error: 'You are submitting comments too quickly. Please wait a minute.' };
+                return { success: false, error: 'You are submitting comments too quickly. Please wait 24 hours.' };
             }
         }
 
         // 4. Insert into Supabase
+        const supabase = getSupabaseClient();
         if (!supabase) {
             return { success: false, error: 'Database environment variables are missing.' };
         }

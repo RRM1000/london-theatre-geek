@@ -31,7 +31,7 @@ export default function TheatreSearchFacility({ initialTheatres }: { initialThea
     return (
         <div className="space-y-8">
             {/* Search Header Config */}
-            <div className="sticky top-4 bg-card-dark border border-border-dark p-4 rounded-2xl flex flex-col md:flex-row gap-4 items-center justify-between z-50 shadow-xl transition-all">
+            <div className="sticky top-4 glass-card p-4 rounded-2xl flex flex-col md:flex-row gap-4 items-center justify-between z-50 transition-all">
 
                 {/* Live Search */}
                 <div className="relative w-full md:w-96 flex-1">
@@ -63,14 +63,14 @@ export default function TheatreSearchFacility({ initialTheatres }: { initialThea
 
             {/* Results Grid */}
             {filteredTheatres.length === 0 ? (
-                <div className="text-center py-20 text-slate-500 border border-dashed border-border-dark rounded-2xl max-w-2xl mx-auto bg-card-dark">
+                <div className="text-center py-20 text-slate-500 glass-card rounded-2xl max-w-2xl mx-auto">
                     <p className="text-lg mb-2 text-white font-medium">No theatres found</p>
                     <p className="text-sm font-normal">Try searching for a different name or show.</p>
                 </div>
             ) : (
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                     {filteredTheatres.map(theatre => (
-                        <a key={theatre.id} href={`/theatres/${theatre.slug}`} className="group flex flex-col bg-card-dark border border-border-dark rounded-2xl overflow-hidden hover:border-primary/50 transition-all shadow-sm hover:shadow-xl p-6 relative">
+                        <a key={theatre.id} href={`/theatres/${theatre.slug}`} className="group flex flex-col glass-card glass-card-edge hover-glow rounded-2xl overflow-hidden transition-all p-6 relative">
 
                             <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-primary/10 to-transparent rounded-bl-[100px] -z-10 group-hover:from-primary/20 transition-colors"></div>
 
