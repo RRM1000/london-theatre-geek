@@ -6,10 +6,10 @@ import { Redis } from '@upstash/redis';
 import { headers } from 'next/headers';
 import { revalidatePath } from 'next/cache';
 
-// Initialize Supabase client
+// Initialize Supabase client safely so it doesn't crash the build if env vars are missing
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
 const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
-const supabase = createClient(supabaseUrl, supabaseKey);
+const supabase = supabaseUrl && supabaseKey ? createClient(supabaseUrl, supabaseKey) : null;
 
 // Initialize Upstash Redis for rate limiting
 // Fallback to a dummy object if env vars are missing during build/setup
@@ -69,6 +69,10 @@ export async function submitComment(prevState: any, formData: FormData) {
         }
 
         // 4. Insert into Supabase
+        if (!supabase) {
+            return { success: false, error: 'Database environment variables are missing.' };
+        }
+
         const { error } = await supabase
             .from('comments')
             .insert([

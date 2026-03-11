@@ -3,7 +3,7 @@ import CommentForm from './CommentForm';
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
 const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
-const supabase = createClient(supabaseUrl, supabaseKey);
+const supabase = supabaseUrl && supabaseKey ? createClient(supabaseUrl, supabaseKey) : null;
 
 import { submitComment } from '@/actions/comments';
 
@@ -15,6 +15,16 @@ interface Comment {
 }
 
 export default async function CommentSection({ showSlug }: { showSlug: string }) {
+    if (!supabase) {
+        return (
+            <section className="max-w-4xl mx-auto mt-20 border-t-2 border-primary pt-16">
+                <div className="bg-background-dark border border-secondary/50 p-8 text-center text-secondary">
+                    DATABASE CONNECTION OFFLINE. (Missing Supabase Environment Variables)
+                </div>
+            </section>
+        );
+    }
+
     // Fetch comments for this specific show
     // We order by created_at ascending so the newest comments are at the bottom (like a chat log)
     const { data: comments, error } = await supabase
