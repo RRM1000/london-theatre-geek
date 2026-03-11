@@ -2,13 +2,22 @@
 @source "../";
 
 @theme {
-  --font-sans: var(--font-inter), var(--font-geist-sans);
+  --font-sans: var(--font-orbitron), var(--font-lato), var(--font-inter), var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-  --color-primary: #f5f53d;
-  --color-background-light: #f8f8f5;
-  --color-background-dark: #181811;
-  --color-card-dark: #2a2a1a;
-  --color-border-dark: #393928;
+
+  /* Sci-Fi Explorer Theme Colors */
+  --color-primary: #DAA520;
+  /* Shimmering Gold */
+  --color-secondary: #6A057F;
+  /* Velvety Deep Plum */
+  --color-background-light: #1B5B84;
+  /* Reflective Teal used for light backgrounds */
+  --color-background-dark: #0A3D62;
+  /* Deep Teal */
+  --color-card-dark: #1B5B84;
+  /* Reflective Teal */
+  --color-border-dark: #DAA520;
+  /* Gold */
 }
 
 :root {
@@ -19,22 +28,56 @@
 
 @layer utilities {
   .neon-glow {
-    box-shadow: 0 0 15px rgba(245, 245, 61, 0.4);
+    box-shadow: 0 0 15px rgba(218, 165, 32, 0.4);
   }
 
   .neon-border {
-    border: 1px solid rgba(245, 245, 61, 0.5);
+    border: 1px solid rgba(218, 165, 32, 0.5);
   }
 
   .marquee-text {
-    text-shadow: 0 0 8px rgba(245, 245, 61, 0.6);
+    text-shadow: 0 0 8px rgba(218, 165, 32, 0.6);
+  }
+
+  /* Sci-Fi Explorer Utilities */
+  .art-deco-border {
+    border: 1px solid var(--color-primary);
+    box-shadow: inset 0 0 10px rgba(218, 165, 32, 0.1);
+  }
+
+  .gold-gradient {
+    background: linear-gradient(135deg, #DAA520 0%, #F5D76E 50%, #DAA520 100%);
+  }
+
+  .plum-overlay {
+    background-color: rgba(106, 5, 127, 0.8);
+  }
+
+  .title-shadow {
+    text-shadow: 2px 2px 0px rgba(10, 61, 98, 0.5), 4px 4px 0px rgba(218, 165, 32, 0.2);
+  }
+
+  .deco-line {
+    height: 2px;
+    background: linear-gradient(90deg, transparent 0%, var(--color-primary) 50%, transparent 100%);
   }
 }
 
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: var(--font-inter), var(--font-geist-sans), sans-serif;
+  font-family: var(--font-lato), var(--font-inter), sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.display-font,
+.marquee-text {
+  font-family: var(--font-orbitron), sans-serif;
 }
 
 .material-symbols-outlined {

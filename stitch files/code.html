@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>London Theatre Geek | Sci-Fi Explorer</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@900&amp;family=Lato:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#DAA520", // Shimmering Gold
+                        "secondary": "#6A057F", // Velvety Deep Plum
+                        "background-dark": "#0A3D62", // Deep Teal
+                        "card-dark": "#1B5B84", // Reflective Teal
+                        "border-gold": "#DAA520",
+                    },
+                    fontFamily: {
+                        "display": ["'Orbitron'", "sans-serif"],
+                        "body": ["'Lato'", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0px",
+                        "lg": "0px",
+                        "xl": "0px",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">
+        @layer base {
+            body {
+                @apply bg-background-dark font-body text-slate-200;
+            }
+        }
+        .art-deco-border {
+            border: 1px solid #DAA520;
+            box-shadow: inset 0 0 10px rgba(218, 165, 32, 0.1);
+        }
+        .gold-gradient {
+            background: linear-gradient(135deg, #DAA520 0%, #F5D76E 50%, #DAA520 100%);
+        }
+        .plum-overlay {
+            background-color: rgba(106, 5, 127, 0.8);
+        }
+        .title-shadow {
+            text-shadow: 2px 2px 0px rgba(10, 61, 98, 0.5), 4px 4px 0px rgba(218, 165, 32, 0.2);
+        }
+        .deco-line {
+            height: 2px;
+            background: linear-gradient(90deg, transparent 0%, #DAA520 50%, transparent 100%);
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+<header class="border-b border-primary/30 bg-background-dark/95 sticky top-0 z-50 backdrop-blur-sm">
+<div class="max-w-[1280px] mx-auto px-6 h-20 flex items-center justify-between">
+<div class="flex items-center gap-12">
+<div class="flex items-center gap-3 text-primary">
+<span class="material-symbols-outlined text-4xl">theater_comedy</span>
+<h1 class="text-xl font-black tracking-widest font-display uppercase">London Theatre Geek</h1>
+</div>
+<nav class="hidden lg:flex items-center gap-10">
+<a class="text-[10px] font-black uppercase tracking-[0.25em] text-primary border-b border-primary font-display" href="#">Shows</a>
+<a class="text-[10px] font-black uppercase tracking-[0.25em] hover:text-primary transition-colors font-display" href="#">Venues</a>
+<a class="text-[10px] font-black uppercase tracking-[0.25em] hover:text-primary transition-colors font-display" href="#">Deals</a>
+<a class="text-[10px] font-black uppercase tracking-[0.25em] hover:text-primary transition-colors font-display" href="#">News</a>
+<a class="text-[10px] font-black uppercase tracking-[0.25em] hover:text-primary transition-colors font-display" href="#">Community</a>
+</nav>
+</div>
+<div class="flex items-center gap-6">
+<div class="relative hidden md:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-primary/70 text-xl">search</span>
+<input class="bg-card-dark border border-primary/40 rounded-none pl-10 pr-4 py-2 text-xs focus:ring-1 focus:ring-primary focus:border-primary w-64 placeholder:text-primary/40 font-body uppercase tracking-widest" placeholder="Search shows..." type="text"/>
+</div>
+<button class="gold-gradient text-background-dark font-black px-6 py-2 text-[10px] uppercase tracking-[0.2em] hover:brightness-110 transition-all font-display border border-primary shadow-lg">
+                Sign In
+            </button>
+<div class="size-10 rounded-none border border-primary overflow-hidden p-0.5">
+<img class="w-full h-full object-cover" data-alt="User profile avatar close up" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBFXxhAilY-JbjzRwdeAQXnxE9NsY4Aq5fIbn9lUEUWY3GTeM20kwvUtgY8AshL6gXkkwGcZxCD59_k6_-VpuwQoYvudMJkph9avEaG8STUqtf0lmMawEz-pNZ4yV1RI6F_JN9Se3zGbJGfShuPXgJwAnKuuMngf30tjTr9ZaU5kYgNjxuZvmLXx8upYmGtkRwIn2YhptaibfQVw90h_EPlNog3nGWgb0gVtNer7LcpHImOJi3VP05e-ZzquVfbjO5dTIDiIFNbmWw"/>
+</div>
+</div>
+</div>
+</header>
+<main class="max-w-[1280px] mx-auto pb-20">
+<section class="mt-8 px-6">
+<div class="relative aspect-[21/9] w-full overflow-hidden group border-2 border-primary p-1">
+<div class="absolute inset-0 bg-gradient-to-t from-background-dark via-background-dark/20 to-transparent z-10"></div>
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000" data-alt="Dramatic stage lighting with cabaret dancers in silhouettes" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAanRc_Y3zN0KSbHkw9qu7TdjpF6_qHtythkC2XZZ2QuHtDlBv_A5JLTVrFG9VAgIjysh2sUHtAUKWGedF4zM2yE3HhoPe0ea3ogcRZwNlztGGdHueF2nOhiZ_o_IebeiBRT0oGJMNtnVqn-UoRcCWMRca-52Be_95CyxSWrqQRjsoiAn2e1sQ2TKU8jg8QDyBXw5PXJ7vkmyForvmdjsbDpGw9les_N7K34MgkC2fkLUMNNnyafaCK-a7qn56DcJ3r1wWjFp1cbSc"/>
+<div class="absolute bottom-0 left-0 p-16 z-20 w-full flex justify-between items-end">
+<div class="max-w-2xl">
+<span class="bg-secondary text-white font-black px-4 py-1 text-[10px] uppercase tracking-[0.4em] mb-6 inline-block font-display">Featured Production</span>
+<h2 class="text-6xl font-black text-white mb-6 leading-[1.1] title-shadow font-display uppercase tracking-tighter">Cabaret at the <br/> Kit Kat Club</h2>
+<p class="text-slate-100 text-lg mb-10 max-w-xl leading-relaxed font-body">Experience the raw, neon-soaked energy of Berlin. A masterpiece of obsession and depth that redefines immersive theatre.</p>
+<div class="flex gap-6">
+<button class="gold-gradient text-background-dark font-black px-10 py-4 text-xs uppercase tracking-[0.25em] shadow-xl hover:translate-y-[-2px] transition-transform font-display border border-primary">
+                            Book Tickets Now
+                        </button>
+<button class="bg-secondary/40 backdrop-blur-md text-white border border-primary/50 font-black px-10 py-4 text-xs uppercase tracking-[0.25em] hover:bg-secondary/60 transition-all font-display">
+                            Read Full Review
+                        </button>
+</div>
+</div>
+<div class="flex gap-6">
+<div class="bg-card-dark/90 backdrop-blur-md border border-primary/50 p-8 min-w-[180px] text-center shadow-2xl relative">
+<div class="absolute top-0 left-1/2 -translate-x-1/2 w-8 h-1 bg-primary"></div>
+<p class="text-primary text-[10px] font-black uppercase tracking-[0.3em] mb-2 font-display">Obsession</p>
+<div class="text-5xl font-black text-white font-display">98%</div>
+<div class="w-full bg-background-dark h-1 mt-4">
+<div class="gold-gradient h-full w-[98%]"></div>
+</div>
+</div>
+<div class="bg-card-dark/90 backdrop-blur-md border border-primary/50 p-8 min-w-[180px] text-center shadow-2xl relative">
+<div class="absolute top-0 left-1/2 -translate-x-1/2 w-8 h-1 bg-primary"></div>
+<p class="text-primary text-[10px] font-black uppercase tracking-[0.3em] mb-2 font-display">Depth</p>
+<div class="text-5xl font-black text-white font-display">94%</div>
+<div class="w-full bg-background-dark h-1 mt-4">
+<div class="gold-gradient h-full w-[94%]"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="mt-12 px-6">
+<div class="bg-card-dark p-8 border border-primary/30 flex flex-col md:flex-row gap-6 items-center shadow-xl">
+<div class="relative flex-1 w-full">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-primary">search</span>
+<input class="w-full bg-background-dark/50 border border-primary/40 p-4 text-white focus:ring-1 focus:ring-primary focus:border-primary font-body uppercase tracking-widest text-sm" placeholder="Search for shows, theaters, or community reviews..." type="text"/>
+</div>
+<div class="flex gap-4 w-full md:w-auto">
+<select class="bg-background-dark/50 border border-primary/40 text-slate-200 py-4 px-8 focus:ring-1 focus:ring-primary font-body uppercase tracking-widest text-sm">
+<option>All Venues</option>
+<option>West End</option>
+<option>Off-West End</option>
+</select>
+<button class="bg-secondary text-primary border border-primary p-4 hover:bg-secondary/80 transition-colors">
+<span class="material-symbols-outlined">tune</span>
+</button>
+</div>
+</div>
+</section>
+<section class="mt-20 px-6">
+<div class="flex items-center justify-between mb-12">
+<div class="relative">
+<h3 class="text-3xl font-black uppercase tracking-widest font-display mb-2">Current Obsessions</h3>
+<div class="h-1 w-24 bg-primary"></div>
+</div>
+<a class="text-primary text-[10px] font-black uppercase tracking-[0.4em] hover:text-white transition-colors font-display border-b border-primary/50" href="#">View All Shows</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+<div class="bg-card-dark border border-primary/30 hover:border-primary transition-all group flex flex-col shadow-2xl">
+<div class="relative h-72 overflow-hidden p-2">
+<div class="w-full h-full overflow-hidden relative">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="Dark red theatrical lighting on a stage set" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBQCo2bOqkUlVOTkGdu3k2h8qG0TxdQFiBo2Tqb6rvkzGZAVqZtxpzTwpqvsc8wL37rTQYF9ZNlmhzdpa4UBwivsYo65Fl3wS43l81Zznq55E78s4QF7B66uTq23XPngg01zRovggoVNqbifcXaNkLQSkSnx04A7p_7IxnwrvtJLYtKXe8l3k-zic9f_kK9Zs8KWaJdMN6nSjfdyJNVXO-lEsxOahS6x6Afj3SzEMc-2E2ugXKG5JFX77uH62eiAErV8JJd_UH2LKM"/>
+<div class="absolute inset-0 bg-secondary/20"></div>
+</div>
+<div class="absolute top-6 right-6 gold-gradient text-background-dark font-black px-4 py-1 text-[8px] tracking-[0.2em] font-display border border-primary shadow-lg">HOT TICKET</div>
+</div>
+<div class="p-8 flex-1 flex flex-col">
+<div class="flex justify-between items-start mb-4">
+<h4 class="text-2xl font-black uppercase leading-none font-display text-white tracking-tighter">Hadestown</h4>
+<span class="text-primary font-black text-2xl font-display">9.2</span>
+</div>
+<p class="text-slate-300 text-sm mb-8 leading-relaxed font-body">Lyric Theatre | A haunting retelling of the Orpheus myth with folk-inspired soul.</p>
+<div class="mt-auto">
+<div class="flex justify-between text-[9px] font-black uppercase tracking-[0.3em] text-primary mb-2 font-display">
+<span>Critic Score</span>
+<span>95%</span>
+</div>
+<div class="w-full bg-background-dark h-1.5 mb-8">
+<div class="bg-secondary h-full w-[95%] border-r border-primary"></div>
+</div>
+<button class="w-full py-4 border border-primary text-primary font-black uppercase tracking-[0.3em] text-[10px] hover:bg-primary hover:text-background-dark transition-all font-display">
+                            See Performance Times
+                        </button>
+</div>
+</div>
+</div>
+<div class="bg-card-dark border border-primary/30 hover:border-primary transition-all group flex flex-col shadow-2xl">
+<div class="relative h-72 overflow-hidden p-2">
+<div class="w-full h-full overflow-hidden relative">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="Classic theater curtain with warm gold lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBrjWayBYdk40AcyKwmC0yW0sCSrd69-onUhNLqHrorkR1CDRdEYusVcPJMhJpvk_E7e04mubvGy8RCilPXHKoz1GD31RJ7DW2n8sp6O2WV3dWTSLfKJ8sLZ_fBvKUsJJDGM1EXSBBOHSl2306J2YFsUlXjdS6UhMC4Lag2-Rnh5c7uQ6vwCZx4_Y6SaYRgGnnxtzQd0tORXs3u3hOAaPD-ZQLxKJhjrjs2xikAfQwLhC-aNIqY4JvcfC3YN2QpBgj1gdGiZXecaEk"/>
+<div class="absolute inset-0 bg-secondary/20"></div>
+</div>
+<div class="absolute top-6 right-6 gold-gradient text-background-dark font-black px-4 py-1 text-[8px] tracking-[0.2em] font-display border border-primary shadow-lg">FAN FAVORITE</div>
+</div>
+<div class="p-8 flex-1 flex flex-col">
+<div class="flex justify-between items-start mb-4">
+<h4 class="text-2xl font-black uppercase leading-none font-display text-white tracking-tighter">Operation Mincemeat</h4>
+<span class="text-primary font-black text-2xl font-display">9.8</span>
+</div>
+<p class="text-slate-300 text-sm mb-8 leading-relaxed font-body">Fortune Theatre | The fast-paced, hilarious true story of the most bizarre WWII mission.</p>
+<div class="mt-auto">
+<div class="flex justify-between text-[9px] font-black uppercase tracking-[0.3em] text-primary mb-2 font-display">
+<span>Geek Hype</span>
+<span>99%</span>
+</div>
+<div class="w-full bg-background-dark h-1.5 mb-8">
+<div class="bg-secondary h-full w-[99%] border-r border-primary"></div>
+</div>
+<button class="w-full py-4 border border-primary text-primary font-black uppercase tracking-[0.3em] text-[10px] hover:bg-primary hover:text-background-dark transition-all font-display">
+                            See Performance Times
+                        </button>
+</div>
+</div>
+</div>
+<div class="bg-card-dark border border-primary/30 hover:border-primary transition-all group flex flex-col shadow-2xl">
+<div class="relative h-72 overflow-hidden p-2">
+<div class="w-full h-full overflow-hidden relative">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="Grand theater interior with chandelier and red seats" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAwHGfhYjxT-zHX0GnvkSvR4NHeM4duDq8-fqIoM_emQMULEq6oGDuRZH5RNETAfllmIzhOlzvhmdAQVZ5NLm-cOdFjp4Ap2_4pOGCwlM6X_GWpkK282D-s1c-e-YiKd86e7a8HbmIwrIirY6Kpw8vuDU8dxFIh0VdSAueoH9MPv0jWnKF6BYQjweyysjSZnSercouSA6q5jvMvl1htZFSZZe6MnX7rzbJ-jq6fZRz0yWTWpXRpxdPu9QnDP6YaV6Di3v6Y5PmJbEU"/>
+<div class="absolute inset-0 bg-secondary/20"></div>
+</div>
+<div class="absolute top-6 right-6 gold-gradient text-background-dark font-black px-4 py-1 text-[8px] tracking-[0.2em] font-display border border-primary shadow-lg">TIMELESS</div>
+</div>
+<div class="p-8 flex-1 flex flex-col">
+<div class="flex justify-between items-start mb-4">
+<h4 class="text-2xl font-black uppercase leading-none font-display text-white tracking-tighter">Les Misérables</h4>
+<span class="text-primary font-black text-2xl font-display">8.9</span>
+</div>
+<p class="text-slate-300 text-sm mb-8 leading-relaxed font-body">Sondheim Theatre | The world's longest running musical continues its epic journey.</p>
+<div class="mt-auto">
+<div class="flex justify-between text-[9px] font-black uppercase tracking-[0.3em] text-primary mb-2 font-display">
+<span>Classic Rating</span>
+<span>88%</span>
+</div>
+<div class="w-full bg-background-dark h-1.5 mb-8">
+<div class="bg-secondary h-full w-[88%] border-r border-primary"></div>
+</div>
+<button class="w-full py-4 border border-primary text-primary font-black uppercase tracking-[0.3em] text-[10px] hover:bg-primary hover:text-background-dark transition-all font-display">
+                            See Performance Times
+                        </button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="mt-32 px-6">
+<div class="bg-secondary p-1 relative overflow-hidden border-2 border-primary">
+<div class="bg-background-dark p-12 flex flex-col md:flex-row items-center justify-between gap-12 border border-primary/40">
+<div class="max-w-md">
+<h3 class="text-primary text-4xl font-black uppercase leading-tight mb-6 font-display tracking-tight">Join the Geek Squad</h3>
+<p class="text-slate-300 text-lg leading-relaxed font-body">Get exclusive access to pre-sales, limited edition merchandise, and raw 'Obsession' scores delivered to your inbox.</p>
+</div>
+<div class="flex w-full md:w-auto gap-4">
+<input class="bg-card-dark border border-primary/40 p-5 text-white placeholder:text-primary/40 focus:ring-1 focus:ring-primary min-w-[350px] font-body text-sm uppercase tracking-widest" placeholder="Your email address" type="email"/>
+<button class="gold-gradient text-background-dark font-black px-10 py-5 uppercase tracking-[0.3em] hover:brightness-110 transition-all font-display text-xs border border-primary shadow-xl">
+                        Subscribe
+                    </button>
+</div>
+</div>
+<div class="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-primary"></div>
+<div class="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-primary"></div>
+<div class="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-primary"></div>
+<div class="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-primary"></div>
+</div>
+</section>
+</main>
+<footer class="bg-background-dark border-t-2 border-primary py-16">
+<div class="max-w-[1280px] mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-12">
+<div class="flex items-center gap-4 text-primary">
+<span class="material-symbols-outlined text-3xl">theater_comedy</span>
+<span class="text-lg font-black tracking-widest font-display uppercase">London Theatre Geek</span>
+</div>
+<div class="flex gap-10 text-primary text-[10px] font-black uppercase tracking-[0.4em] font-display">
+<a class="hover:text-white transition-colors" href="#">Privacy</a>
+<a class="hover:text-white transition-colors" href="#">Terms</a>
+<a class="hover:text-white transition-colors" href="#">Advertise</a>
+<a class="hover:text-white transition-colors" href="#">Contact</a>
+</div>
+<p class="text-primary/60 text-xs font-body uppercase tracking-widest">© 2024 London Theatre Geek. Obsessed with the stage.</p>
+</div>
+</footer>
+
+</body></html>
